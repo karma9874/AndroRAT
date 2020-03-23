@@ -35,7 +35,7 @@ Usage:
     -p, --port              Attacker port number (required)
     -o, --output            Name for the apk file (optional)
 ```
-Or you can manually build the apk by importing [Android Code]() folder to Android Studio and changing the IP address and port number in [config.java]() file and then you can generate the signed apk from `Android Studio -> Build -> Generate Signed APK(s)`
+Or you can manually build the apk by importing [Android Code](https://github.com/karma9874/AndroRAT/tree/master/Android_Code) folder to Android Studio and changing the IP address and port number in [config.java](https://github.com/karma9874/AndroRAT/blob/master/Android_Code/app/src/main/java/com/example/reverseshell2/config.java) file and then you can generate the signed apk from `Android Studio -> Build -> Generate Signed APK(s)`
 ### `shell` mode
 ```
 Usage:
