@@ -32,7 +32,7 @@ AndroRAT requires Python (> 3.6) and JAVA (or Android Studio)
 git clone https://github.com/karma9874/AndroRAT.git
 pip install colorama
 ```
-## Usage
+## Usage (Windows and Linux)
 ### Available Modes
 * `--build` - for building the android apk 
 * `--shell` - getting an interactive shell of the device
