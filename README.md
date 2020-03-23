@@ -16,7 +16,7 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 ![AndroRAT](https://github.com/karma9874/AndroRAT/blob/master/Screenshots/5.jpg "AndroRAT in action")
 ## Features of AndroRAT 
 * Full persistent backdoor
-* Fully undetectable by any antivirus scanner [(VirusTota](https://github.com/karma9874/AndroRAT/blob/master/Screenshots/virusTotal.JPG))
+* Fully undetectable by any antivirus scanner [(VirusTotal](https://github.com/karma9874/AndroRAT/blob/master/Screenshots/virusTotal.JPG))
 * Invisible icon on install
 * Light weight apk which runs 24*7 in background
 * App starts automatically on boot up 
@@ -103,10 +103,13 @@ In the sh shell there are some sub commands
   <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/1.JPG" width="800"/>
 </p>
 ------------------------------------------------------------------------------------------------------------------------------
+
+
 ## TODO
 * Set up multi client
 * Add screenshot command
-* 
+
+
 ## License
 AndroRAT is licensed under MIT license take a look at the [LICENSE](https://github.com/karma9874/AndroRAT/blob/master/LICENSE) for more information.
 
