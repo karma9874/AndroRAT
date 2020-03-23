@@ -14,6 +14,15 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 ## Screenshots
 
 ![AndroRAT](https://github.com/karma9874/AndroRAT/blob/master/Screenshots/5.jpg "AndroRAT in action")
+## Features of AndroRAT 
+* Full persistent backdoor
+* Fully undetectable by any antivirus scanner [(VirusTota](https://github.com/karma9874/AndroRAT/blob/master/Screenshots/virusTotal.JPG))
+* Invisible icon on install
+* Light weight apk which runs 24*7 in background
+* App starts automatically on boot up 
+* Can record audio, video, take picture from both camera
+* Browse call logs and SMS logs
+* Get current location, sim card details ,ip, mac address of the device
 
 ## Prerequisites
 AndroRAT requires Python (> 3.6) and JAVA (or Android Studio)
@@ -21,6 +30,7 @@ AndroRAT requires Python (> 3.6) and JAVA (or Android Studio)
 ## Installation
 ```
 git clone https://github.com/karma9874/AndroRAT.git
+pip install colorama
 ```
 ## Usage
 ### Available Modes
@@ -44,7 +54,8 @@ Usage:
     -i, --ip                Listner IP address
     -p, --port              Listner port number
 ```
-After running the `shell` mode you will get an interpreter of the device
+After running the `shell` mode you will get an interpreter of the device  
+
 Commands which can run on the interpreter
 ```
     deviceInfo                 --> returns basic info of the device
@@ -66,6 +77,12 @@ Commands which can run on the interpreter
     getMACAddress              --> returns the mac address of the device
     exit                       --> exit the interpreter
 ```
+In the sh shell there are some sub commands
+```
+    get [full_file_path]        --> donwloads the file to the local machine (file size upto 15mb)
+    put [filename]              --> uploads the file to the android device
+```
+
 ## Examples
 
 * To build the apk:
@@ -86,7 +103,10 @@ Commands which can run on the interpreter
   <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/1.JPG" width="800"/>
 </p>
 ------------------------------------------------------------------------------------------------------------------------------
-
+## TODO
+* Set up multi client
+* Add screenshot command
+* 
 ## License
 AndroRAT is licensed under MIT license take a look at the [LICENSE](https://github.com/karma9874/AndroRAT/blob/master/LICENSE) for more information.
 
