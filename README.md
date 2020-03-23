@@ -78,7 +78,7 @@ Commands which can run on the interpreter
 <p align="center">
   <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/6.JPG" width="600"/>
 </p>
-------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------  
 * Some interpreter Commands 
 <p align="center">
   <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/1.JPG" width="600"/>
