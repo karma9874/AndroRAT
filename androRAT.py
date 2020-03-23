@@ -127,7 +127,7 @@ if args.build:
         resOut = executeCMD("java -jar Jar_Files/apktool.jar b Compiled_apk_files  -o "+outFileName)
         done = True
         t.join()
-        if resOut.stdout:
+        if not resOut.returncode:
             print(Style.BRIGHT+Fore.GREEN+"\rSuccessfully apk built "+getpwd(outFileName)+"\n"+Fore.RESET,end="")
             print(Style.BRIGHT+Fore.YELLOW+"\nSigning the apk"+Fore.RESET)
             done=False
@@ -136,8 +136,12 @@ if args.build:
             resOut = executeCMD("java -jar Jar_Files/sign.jar "+outFileName+" --override")
             done = True
             t.join()
-            print(Fore.GREEN+"\rSuccessfully signed the apk "+outFileName+Fore.RESET,end="")
-            print(" ")
+            if not resOut.returncode:
+                print(Fore.GREEN+"\rSuccessfully signed the apk "+outFileName+Fore.RESET,end="")
+                print(" ")
+            else:
+                print("\r"+resOut.stderr)
+                print(Fore.RED+"Signing Failed"+Fore.RESET)    
         else:
             print("\r"+resOut.stderr)
             print(Fore.RED+"Building Failed"+Fore.RESET)
