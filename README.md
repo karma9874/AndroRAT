@@ -1,8 +1,7 @@
 **Disclaimer** : This software is meant for educational purposes only. I don't feel responsible for any malicious use of the app.
 # AndroRAT 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
-<a href='https://github.com/karma9874' target='_blank'><img src "https://img.shields.io/github/followers/karma9874?label=Follow&style=social"></a>
-<a href='https://twitter.com/karma9874' target='_blank'><img src "https://img.shields.io/twitter/follow/karma9874?label=Follow&style=social"></a>
+[![Twitter Follow](https://img.shields.io/twitter/follow/karma9874?label=Follow&style=social)](https://twitter.com/karma9874)
 
 AndroRAT is a tool designed to give the control of the android system remotely and retrieve informations from it. Androrat is a client/server application developed in Java Android for the client side and the Server is in Python.
 
@@ -79,6 +78,7 @@ Commands which can run on the interpreter
   <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/6.JPG" width="600"/>
 </p>
 ------------------------------------------------------------------------------------------------------------------------------  
+
 * Some interpreter Commands 
 <p align="center">
   <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/1.JPG" width="600"/>
