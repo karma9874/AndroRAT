@@ -10,7 +10,7 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 
 ## Screenshots
 
-![AndroRAT](https://github.com/karma9874/AndroRAT/blob/master/Screenshots/5.jpg "AndroRAT in action")
+![AndroRAT](https://github.com/karma9874/AndroRAT/blob/master/Screenshots/5.JPG "AndroRAT in action")
 
 ## Prerequisites
 AndroRAT requires Python (> 3.6) and JAVA (or Android Studio)
@@ -74,12 +74,12 @@ Commands which can run on the interpreter
 ## Interpreter Examples
 * Generating APK
 <p align="center">
-  <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/6.jpg" width="600"/>
+  <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/6.JPG" width="600"/>
 </p>
 ---------------------------------------------------------------
 * Some interpreter Commands 
 <p align="center">
-  <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/1.jpg" width="600"/>
+  <img src="https://github.com/karma9874/AndroRAT/blob/master/Screenshots/1.JPG" width="600"/>
 </p>
 ---------------------------------------------------------------
 
