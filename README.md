@@ -25,7 +25,7 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 * Get current location, sim card details ,ip, mac address of the device
 
 ## Prerequisites
-AndroRAT requires Python (> 3.6) and JAVA (or Android Studio)
+AndroRAT requires Python (> 3.6) and JAVA 8 (or Android Studio)
 
 ## Installation
 ```

