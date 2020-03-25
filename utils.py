@@ -10,14 +10,17 @@ import re
 from subprocess import PIPE, run
 from colorama import Fore, Style,init
 
-if(platform.system() == 'Windows'):
-    clear = lambda: os.system('cls')
-    direc = "\\"
-    init(convert=True)
-else:
-    clear = lambda: os.system('clear')
-    direc = "/"
+def clearDirec():
+    if(platform.system() == 'Windows'):
+        clear = lambda: os.system('cls')
+        direc = "\\"
+        init(convert=True)
+    else:
+        clear = lambda: os.system('clear')
+        direc = "/"
+    return clear,direc
 
+clear,direc = clearDirec()
 if not os.path.isdir(os.getcwd()+direc+"Dumps"):
     os.makedirs("Dumps")
 
@@ -152,7 +155,7 @@ def shell(client):
         for i in msg[:-2]:
             print(i)   
         print(" ")
-        command = input("android@shell:~$ ")
+        command = input(Style.BRIGHT+Fore.CYAN+"android@shell:~$ "+Fore.RESET)
         command = command+"\n"
         if command.strip() == "clear":
             client.send("test\n".encode("UTF-8"))

