@@ -32,6 +32,21 @@ AndroRAT requires Python (> 3.6) and JAVA 8 (or Android Studio)
 git clone https://github.com/karma9874/AndroRAT.git
 pip install colorama
 ```
+#### Note: 
+While cloning the repository using Git bash on windows, you may get the following error:
+> error: unable to create file \<filename>: Filename too long
+
+This is because the Git has a limit of 4096 characters for a filename, except on Windows when Git is compiled with msys. It uses an older version of the Windows API and there's a limit of 260 characters for a filename. 
+
+You can circumvent this by setting `core.longpaths` to `true`.
+
+> git config -system core.longpaths true
+
+You must run Git bash with administrator privileges. 
+
+
+
+
 ## Usage (Windows and Linux)
 ### Available Modes
 * `--build` - for building the android apk 
