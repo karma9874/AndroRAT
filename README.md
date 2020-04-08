@@ -44,9 +44,6 @@ You can circumvent this by setting `core.longpaths` to `true`.
 
 You must run Git bash with administrator privileges. 
 
-
-
-
 ## Usage (Windows and Linux)
 ### Available Modes
 * `--build` - for building the android apk 
