@@ -40,7 +40,7 @@ This is because the Git has a limit of 4096 characters for a filename, except on
 
 You can circumvent this by setting `core.longpaths` to `true`.
 
-> git config -system core.longpaths true
+> git config --system core.longpaths true
 
 You must run Git bash with administrator privileges. 
 
