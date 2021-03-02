@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     Activity activity = this;
     Context context;
-    static String TAG = "Main_Activity_Class";
+    static String TAG = "MainActivityClass";
     private PowerManager.WakeLock mWakeLock = null;
 
     @Override
