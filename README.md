@@ -31,7 +31,7 @@ AndroRAT requires Python (> 3.6) and JAVA 8 (or Android Studio)
 ## Installation
 ```
 git clone https://github.com/karma9874/AndroRAT.git
-pip install colorama
+pip install -r requirements.txt
 ```
 #### Note: 
 While cloning the repository using Git bash on windows, you may get the following error:
