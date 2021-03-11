@@ -1,8 +1,8 @@
 !!brut.androlib.meta.MetaInfo
-apkFileName: Compiled_apk_files.apk
+apkFileName: app-debug.apk
 compressionType: false
 doNotCompress:
-- resources.arsc
+- arsc
 - META-INF/androidx.appcompat_appcompat.version
 - META-INF/androidx.arch.core_core-runtime.version
 - META-INF/androidx.asynclayoutinflater_asynclayoutinflater.version
@@ -29,22 +29,11 @@ doNotCompress:
 - META-INF/androidx.vectordrawable_vectordrawable.version
 - META-INF/androidx.versionedparcelable_versionedparcelable.version
 - META-INF/androidx.viewpager_viewpager.version
-- png
 isFrameworkApk: false
-packageInfo:
-  forcedPackageId: '127'
-  renameManifestPackage: null
-sdkInfo:
-  minSdkVersion: '16'
-  targetSdkVersion: '22'
+packageInfo: null
+sdkInfo: null
 sharedLibrary: false
-sparseResources: false
 unknownFiles: {}
-usesFramework:
-  ids:
-  - 1
-  tag: null
-version: 2.4.1
-versionInfo:
-  versionCode: '1'
-  versionName: '1.0'
+usesFramework: null
+version: 2.3.1
+versionInfo: null

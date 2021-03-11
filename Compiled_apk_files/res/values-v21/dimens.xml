@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="notification_content_margin_start">0.0dip</dimen>
-    <dimen name="notification_main_column_padding_top">0.0dip</dimen>
-    <dimen name="notification_media_narrow_margin">12.0dip</dimen>
-</resources>

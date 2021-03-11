@@ -108,7 +108,7 @@ Name: META-INF/screenshotty-lib_release.kotlin_module
 SHA1-Digest: VCgQLSAX8o89igE/YS09nCuNjTI=
 
 Name: classes.dex
-SHA1-Digest: 98rSODjLSCvdSlEoKuS0VG4c6b0=
+SHA1-Digest: QSImJ45qhNjosyxCSZOmdGc0fI8=
 
 Name: kotlin/ArithmeticException.kotlin_metadata
 SHA1-Digest: BihgNx0ZzfX2T2eU8UKnxGl98K0=

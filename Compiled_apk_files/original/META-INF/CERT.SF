@@ -1,6 +1,6 @@
 Signature-Version: 1.0
 Created-By: 1.0 (Android)
-SHA1-Digest-Manifest: i6Z9wC/xhB8fe8jSXEE5UjEdKkY=
+SHA1-Digest-Manifest: mbC0I0moJydeYRLFmvLFr3eQQdg=
 X-Android-APK-Signed: 2
 
 Name: AndroidManifest.xml
@@ -109,7 +109,7 @@ Name: META-INF/screenshotty-lib_release.kotlin_module
 SHA1-Digest: yMe8UwW9gz3j31262s+TfeLbtjA=
 
 Name: classes.dex
-SHA1-Digest: A5reueB+xAN0fFHO1krgR7l0CQw=
+SHA1-Digest: UaeGeAdWlrJGx0g4VBCWesO4N0g=
 
 Name: kotlin/ArithmeticException.kotlin_metadata
 SHA1-Digest: T9nm76uTyxiFTwH8E9WdNHykUNI=

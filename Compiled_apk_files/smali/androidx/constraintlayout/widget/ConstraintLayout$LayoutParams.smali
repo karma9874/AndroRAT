@@ -787,7 +787,7 @@
     iput-object v0, v1, Landroidx/constraintlayout/widget/ConstraintLayout$LayoutParams;->dimensionRatio:Ljava/lang/String;
 
     .line 2831
-    const/high16 v0, 0x7fc00000    # Float.NaN
+    const/high16 v0, 0x7fc00000    # NaNf
 
     iput v0, v1, Landroidx/constraintlayout/widget/ConstraintLayout$LayoutParams;->dimensionRatioValue:F
 

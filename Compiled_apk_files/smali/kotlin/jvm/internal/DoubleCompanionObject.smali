@@ -91,7 +91,7 @@
     sput-wide v0, Lkotlin/jvm/internal/DoubleCompanionObject;->NEGATIVE_INFINITY:D
 
     .line 13
-    const-wide/high16 v0, 0x7ff8000000000000L    # Double.NaN
+    const-wide/high16 v0, 0x7ff8000000000000L    # NaN
 
     sput-wide v0, Lkotlin/jvm/internal/DoubleCompanionObject;->NaN:D
 

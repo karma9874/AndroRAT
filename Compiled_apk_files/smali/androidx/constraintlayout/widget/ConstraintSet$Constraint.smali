@@ -343,7 +343,7 @@
     iput v3, p0, Landroidx/constraintlayout/widget/ConstraintSet$Constraint;->scaleY:F
 
     .line 420
-    const/high16 v4, 0x7fc00000    # Float.NaN
+    const/high16 v4, 0x7fc00000    # NaNf
 
     iput v4, p0, Landroidx/constraintlayout/widget/ConstraintSet$Constraint;->transformPivotX:F
 
