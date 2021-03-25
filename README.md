@@ -47,7 +47,7 @@ You must run Git bash with administrator privileges.
 
 ## Usage (Windows and Linux)
 
-* To get the control panel of the app dial `*#*#1337#*#*`
+* To get the control panel of the app dial `*#*#1337#*#*` (For now it has only two options `Restart Activity` and `Uninstall`)
 > Note: In order to use this feature in some devices you need to enable the option `display pop-up windows running in background` from the settings.
 
 ### Available Modes
