@@ -61,29 +61,29 @@
 
 .field public static final notification_main_column_container:I = 0x7f070056
 
-.field public static final right:I = 0x7f07005e
+.field public static final right:I = 0x7f07005f
 
-.field public static final right_icon:I = 0x7f07005f
+.field public static final right_icon:I = 0x7f070060
 
-.field public static final right_side:I = 0x7f070060
+.field public static final right_side:I = 0x7f070061
 
-.field public static final start:I = 0x7f07007c
+.field public static final start:I = 0x7f07007d
 
-.field public static final tag_transition_group:I = 0x7f070081
+.field public static final tag_transition_group:I = 0x7f070082
 
-.field public static final tag_unhandled_key_event_manager:I = 0x7f070082
+.field public static final tag_unhandled_key_event_manager:I = 0x7f070083
 
-.field public static final tag_unhandled_key_listeners:I = 0x7f070083
+.field public static final tag_unhandled_key_listeners:I = 0x7f070084
 
-.field public static final text:I = 0x7f070084
+.field public static final text:I = 0x7f070085
 
-.field public static final text2:I = 0x7f070085
+.field public static final text2:I = 0x7f070086
 
-.field public static final time:I = 0x7f070088
+.field public static final time:I = 0x7f070089
 
-.field public static final title:I = 0x7f070089
+.field public static final title:I = 0x7f07008a
 
-.field public static final top:I = 0x7f07008c
+.field public static final top:I = 0x7f07008d
 
 
 # direct methods

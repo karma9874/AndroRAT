@@ -91,7 +91,7 @@
     sput v0, Lkotlin/jvm/internal/FloatCompanionObject;->NEGATIVE_INFINITY:F
 
     .line 21
-    const/high16 v0, 0x7fc00000    # NaNf
+    const/high16 v0, 0x7fc00000    # Float.NaN
 
     sput v0, Lkotlin/jvm/internal/FloatCompanionObject;->NaN:F
 

@@ -71,34 +71,36 @@
 
 .field public static final abc_tooltip:I = 0x7f09001b
 
-.field public static final camera_layout:I = 0x7f09001c
+.field public static final activity_control_panel:I = 0x7f09001c
 
-.field public static final notification_action:I = 0x7f09001d
+.field public static final camera_layout:I = 0x7f09001d
 
-.field public static final notification_action_tombstone:I = 0x7f09001e
+.field public static final notification_action:I = 0x7f09001e
 
-.field public static final notification_template_custom_big:I = 0x7f09001f
+.field public static final notification_action_tombstone:I = 0x7f09001f
 
-.field public static final notification_template_icon_group:I = 0x7f090020
+.field public static final notification_template_custom_big:I = 0x7f090020
 
-.field public static final notification_template_part_chronometer:I = 0x7f090021
+.field public static final notification_template_icon_group:I = 0x7f090021
 
-.field public static final notification_template_part_time:I = 0x7f090022
+.field public static final notification_template_part_chronometer:I = 0x7f090022
 
-.field public static final select_dialog_item_material:I = 0x7f090023
+.field public static final notification_template_part_time:I = 0x7f090023
 
-.field public static final select_dialog_multichoice_material:I = 0x7f090024
+.field public static final select_dialog_item_material:I = 0x7f090024
 
-.field public static final select_dialog_singlechoice_material:I = 0x7f090025
+.field public static final select_dialog_multichoice_material:I = 0x7f090025
 
-.field public static final support_simple_spinner_dropdown_item:I = 0x7f090026
+.field public static final select_dialog_singlechoice_material:I = 0x7f090026
+
+.field public static final support_simple_spinner_dropdown_item:I = 0x7f090027
 
 
 # direct methods
 .method public constructor <init>()V
     .locals 0
 
-    .line 3557
+    .line 3559
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

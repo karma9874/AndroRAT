@@ -2,7 +2,7 @@
 apkFileName: app-debug.apk
 compressionType: false
 doNotCompress:
-- arsc
+- resources.arsc
 - META-INF/androidx.appcompat_appcompat.version
 - META-INF/androidx.arch.core_core-runtime.version
 - META-INF/androidx.asynclayoutinflater_asynclayoutinflater.version
@@ -29,11 +29,13 @@ doNotCompress:
 - META-INF/androidx.vectordrawable_vectordrawable.version
 - META-INF/androidx.versionedparcelable_versionedparcelable.version
 - META-INF/androidx.viewpager_viewpager.version
+- png
 isFrameworkApk: false
 packageInfo: null
 sdkInfo: null
 sharedLibrary: false
+sparseResources: false
 unknownFiles: {}
 usesFramework: null
-version: 2.3.1
+version: 2.4.1
 versionInfo: null

