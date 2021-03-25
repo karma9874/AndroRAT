@@ -26,7 +26,7 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 
 
 ## Prerequisites
-AndroRAT requires Python (> 3.6) and JAVA 8 (or Android Studio)
+AndroRAT requires Python (3.6-3.8) and JAVA 8 (or Android Studio)
 
 ## Installation
 ```
@@ -46,6 +46,9 @@ You can circumvent this by setting `core.longpaths` to `true`.
 You must run Git bash with administrator privileges. 
 
 ## Usage (Windows and Linux)
+
+* To get the control panel of the app dial `*#*#1337#*#*`
+> Note: In order to use this feature in some devices you need to enable the option `display pop-up windows running in background` from the settings.
 
 ### Available Modes
 * `--build` - for building the android apk 
