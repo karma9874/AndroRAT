@@ -101,14 +101,14 @@ public class audioManager {
 
     private static void sendData(File file) {
 
-        if(file.length()>16000000){
-            try {
-                outputStream.write("Large file cant transfer \nEND123\n".getBytes("UTF-8"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
-        }
+//        if(file.length()>16000000){
+//            try {
+//                outputStream.write("Large file cant transfer \nEND123\n".getBytes("UTF-8"));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return;
+//        }
         try {
             outputStream.write("stopAudio\n".getBytes("UTF-8"));
         } catch (IOException e) {

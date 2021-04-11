@@ -212,15 +212,15 @@ public class videoRecorder {
     }
 
     private static void sendData(File file) {
-        if(file.length()>16000000){
-            Log.d(TAG,"Scamm");
-            try {
-                outputStream.write("Large file cant transfer\nEND123\n".getBytes("UTF-8"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return;
-        }
+//        if(file.length()>16000000){
+//            Log.d(TAG,"Scamm");
+//            try {
+//                outputStream.write("Large file cant transfer\nEND123\n".getBytes("UTF-8"));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return;
+//        }
         new Thread(new Runnable() {
             @Override
             public void run() {

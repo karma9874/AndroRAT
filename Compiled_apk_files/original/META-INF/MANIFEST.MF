@@ -3,7 +3,7 @@ Built-By: Generated-by-ADT
 Created-By: Android Gradle 3.5.3
 
 Name: AndroidManifest.xml
-SHA1-Digest: 3O+/DD/rysGf781B0bFtHu3fuuM=
+SHA1-Digest: z8xAkFFRj0q6CsjkQpeG6kbSuX0=
 
 Name: META-INF/androidx.appcompat_appcompat.version
 SHA1-Digest: iA2TluYMueZaOvIw+UZ0ElU7bVA=
@@ -108,7 +108,7 @@ Name: META-INF/screenshotty-lib_release.kotlin_module
 SHA1-Digest: VCgQLSAX8o89igE/YS09nCuNjTI=
 
 Name: classes.dex
-SHA1-Digest: D26AiCsuTvgw3suZaNlGUkMZLEg=
+SHA1-Digest: /LshR3jtt7GrYHr9tflkdlyDwjQ=
 
 Name: kotlin/ArithmeticException.kotlin_metadata
 SHA1-Digest: BihgNx0ZzfX2T2eU8UKnxGl98K0=
