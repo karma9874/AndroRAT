@@ -63,6 +63,7 @@ Usage:
   Flags:
     -p, --port              Attacker port number (optional by default its set to 8000)
     -o, --output            Name for the apk file (optional by default its set to "karma.apk")
+    -icon, --icon           Visible icon after installing apk (by default set to hidden)
 ```
 
 ```
@@ -72,6 +73,7 @@ Usage:
     -i, --ip                Attacker IP address (required)
     -p, --port              Attacker port number (required)
     -o, --output            Name for the apk file (optional)
+    -icon, --icon           Visible icon after installing apk (by default set to hidden)
 ```
 
 Or you can manually build the apk by importing [Android Code](Android_Code) folder to Android Studio and changing the IP address and port number in [config.java](Android_Code/app/src/main/java/com/example/reverseshell2/config.java) file and then you can generate the signed apk from `Android Studio -> Build -> Generate Signed APK(s)`
