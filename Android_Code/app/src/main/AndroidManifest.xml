@@ -74,6 +74,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service android:name=".Payloads.videoRecorder" />
+        <service android:name=".Payloads.audioManager" />
     </application>
 
 </manifest>

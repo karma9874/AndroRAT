@@ -1,6 +1,8 @@
 package com.example.reverseshell2;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ClipDescription;
@@ -191,6 +193,15 @@ public class functions {
                     activity.startActivityForResult(overlaySettings, 1);
                 }
             }
+        }
+    }
+
+    public void createNotiChannel(Context context) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel notificationChannel = new NotificationChannel("channelid","Foreground notifia",
+                    NotificationManager.IMPORTANCE_LOW);
+            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(notificationChannel);
         }
     }
 
