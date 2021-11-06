@@ -1,0 +1,3 @@
+*.smali linguist-detectable=false
+*.java linguist-detectable=true
+*.python linguist-detectable=true
