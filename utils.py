@@ -244,7 +244,7 @@ def stopAudio(client):
     flag =0
     data=recvall(client) 
     data = data.strip().replace("END123","").strip()
-    filename = "Dumps"+direc+"Audio_"+timestr+".mp4"
+    filename = "Dumps"+direc+"Audio_"+timestr+".mp3"
     with open(filename, 'wb') as audio:
         try:
             audioData = base64.b64decode(data)
