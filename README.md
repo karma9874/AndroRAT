@@ -1,4 +1,4 @@
-**Disclaimer** : This software is meant for educational purposes only. I don't feel responsible for any malicious use of the app.
+**Disclaimer** : This software is meant for educational purposes only. I'm not responsible for any malicious use of the app.
 # AndroRAT 
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT) 
@@ -34,7 +34,7 @@ git clone https://github.com/karma9874/AndroRAT.git
 pip install -r requirements.txt
 ```
 #### Note: 
-While cloning the repository using Git bash on windows, you may get the following error:
+While cloning the repository using Git bash on Windows, you may get the following error:
 > error: unable to create file \<filename>: Filename too long
 
 This is because the Git has a limit of 4096 characters for a filename, except on Windows when Git is compiled with msys. It uses an older version of the Windows API and there's a limit of 260 characters for a filename. 
