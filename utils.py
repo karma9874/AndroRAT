@@ -299,6 +299,8 @@ def get_shell(ip,port):
     soc = socket.socket() 
     soc = socket.socket(type=socket.SOCK_STREAM)
     try:
+        # Restart the TCP server on exit
+        soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         soc.bind((ip, int(port)))
     except Exception as e:
         print(stdOutput("error")+"\033[1m %s"%e);exit()
