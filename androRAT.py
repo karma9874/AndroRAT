@@ -4,9 +4,14 @@
 from utils import *
 import argparse
 import sys
-from colorama import Fore, Style,init
-from pyngrok import ngrok,conf
 import platform
+try:
+    from pyngrok import ngrok
+except ImportError as e:
+    print(stdOutput("error")+"\033[1mpyngrok not found");
+    print(stdOutput("info")+"\033[1mRun pip3 install -r requirements.txt")
+    exit()
+    
 clearDirec()
 
 #                     _           _____         _______
@@ -33,7 +38,6 @@ args = parser.parse_args()
 if float(platform.python_version()[:3]) < 3.6 and float(platform.python_version()[:3]) > 3.8 :
     print(stdOutput("error")+"\033[1mPython version should be between 3.6 to 3.8")
     sys.exit()
-
 
 if args.build:
     port_ = args.port

