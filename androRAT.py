@@ -2,14 +2,17 @@
 # -*- coding: utf-8 -*-
 
 from utils import *
+from constraints import authtoken
 import argparse
 import sys
 import platform
 try:
     from pyngrok import ngrok,conf
+    ngrok.set_auth_token(authtoken)
 except ImportError as e:
     print(stdOutput("error")+"\033[1mpyngrok not found");
     print(stdOutput("info")+"\033[1mRun pip3 install -r requirements.txt")
+    print(stdOutput("info")+"\033[1mAdd your ngrok auth-token in constraints.py file")
     exit()
     
 clearDirec()
