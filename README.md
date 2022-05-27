@@ -34,6 +34,8 @@ git clone https://github.com/karma9874/AndroRAT.git
 cd AndroRAT
 pip install -r requirements.txt
 ```
+* Add your own ngrok auth-token in **constraints.py**
+
 #### Note: 
 While cloning the repository using Git bash on Windows, you may get the following error:
 > error: unable to create file \<filename>: Filename too long
