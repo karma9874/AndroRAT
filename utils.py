@@ -16,7 +16,7 @@ import threading
 import itertools
 import queue
 
-
+sys.stdout.reconfigure(encoding='utf-8')
 
 banner = """\033[1m\033[91m
                     _           _____         _______
