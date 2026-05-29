@@ -113,13 +113,18 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
                     });
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         functions.jobScheduler(context);
-                    }else{
+                    } else {
                         activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            context.startService(new Intent(context,mainService.class));
-                        }
-                    });
+                            @Override
+                            public void run() {
+                                Intent serviceIntent = new Intent(context, mainService.class);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    ContextCompat.startForegroundService(context, serviceIntent);
+                                } else {
+                                    context.startService(serviceIntent);
+                                }
+                            }
+                        });
                     }
                     socket.close();
                 }
@@ -272,11 +277,16 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
             Log.d("service_runner","called");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 functions.jobScheduler(context);
-            }else{
+            } else {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        context.startService(new Intent(context,mainService.class));
+                        Intent serviceIntent = new Intent(context, mainService.class);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            ContextCompat.startForegroundService(context, serviceIntent);
+                        } else {
+                            context.startService(serviceIntent);
+                        }
                     }
                 });
             }
@@ -290,11 +300,16 @@ public class tcpConnection extends AsyncTask<String,Void,Void> {
             });
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 functions.jobScheduler(context);
-            }else{
+            } else {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        context.startService(new Intent(context,mainService.class));
+                        Intent serviceIntent = new Intent(context, mainService.class);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            ContextCompat.startForegroundService(context, serviceIntent);
+                        } else {
+                            context.startService(serviceIntent);
+                        }
                     }
                 });
             }

